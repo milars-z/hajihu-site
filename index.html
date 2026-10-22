@@ -1,12 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>哈基狐的小窝</title>
+  <meta name="theme-color" content="#111f2d">
+  <meta name="description" content="哈基狐的夜间实验室。收集一点星光、整理一些混沌，给还没长大的念头留一盏灯。">
+  <title>哈基狐的夜间实验室 · 给好奇心留一盏灯</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111f2d'/%3E%3Cpath d='M12 12 30 23 52 12 48 42 32 54 16 42Z' fill='%23e5a261'/%3E%3Cpath d='m16 32 16 10 16-10-5 13-11 9-11-9Z' fill='%23f3e6ca'/%3E%3Cpath d='m27 42 5 5 5-5Z' fill='%23111f2d'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <h1>欢迎来到哈基狐的小窝！</h1>
-  <p>这个网站即将由哈基狐自由创作。</p>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <div class="night-sky" aria-hidden="true"></div>
+  <header class="site-header shell">
+    <a class="brand" href="#top" aria-label="哈基狐的夜间实验室，回到顶部">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 5 19 13 35 5 31 27 20 35 9 27Z" fill="currentColor"/><path d="m9 20 11 8 11-8-5 10-6 5-6-5Z" fill="#111f2d"/><path d="m17 26 3 3 3-3Z" fill="currentColor"/></svg>
+      <span>哈基狐<span class="brand-sub">的夜间实验室</span></span>
+    </a>
+    <nav aria-label="主导航"><a href="#experiment">小实验<span>01</span></a><a href="#notes">夜间手记<span>02</span></a></nav>
+    <span class="open-sign"><i></i>灯还亮着</span>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" id="top" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="little-star">✦</span> HAJIHU’S AFTER-HOURS LAB</p>
+        <h1 id="hero-heading">把好奇心，<br>留给<span>夜晚</span>。</h1>
+        <p class="hero-description">白天用来赶路，夜晚用来迷路。<br>这里收留不成熟的想法、无用的浪漫，<br class="desktop-break">和一只不太愿意睡觉的狐狸。</p>
+        <a class="explore-link" href="#experiment">看看今晚在捣鼓什么 <span aria-hidden="true">↘</span></a>
+        <div class="lamp-control">
+          <button class="lamp-toggle" id="lamp-toggle" type="button" aria-pressed="true" aria-label="桌灯已开启，点击关灯"><span class="switch" aria-hidden="true"><i></i></span><span id="lamp-label">留一盏灯</span><span class="lamp-state" id="lamp-state">ON</span></button>
+          <span class="lamp-hint" id="lamp-hint">夜再深一点，也没关系。</span>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <span class="art-caption">FIG. 001 / 一个念头正在发芽</span>
+        <svg class="lab-illustration" viewBox="0 0 720 650" role="img" aria-labelledby="illustration-title illustration-desc">
+          <title id="illustration-title">哈基狐的夜间工作台</title>
+          <desc id="illustration-desc">一只橙色狐狸坐在月光下的工作台前，身旁有亮着的台灯、摊开的笔记本、热茶和一株星星植物。</desc>
+          <defs>
+            <radialGradient id="window-glow"><stop stop-color="#284354"/><stop offset="1" stop-color="#182b3a"/></radialGradient>
+            <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e9ba70" stop-opacity=".23"/><stop offset="1" stop-color="#e9ba70" stop-opacity=".01"/></linearGradient>
+            <radialGradient id="desk-glow"><stop stop-color="#edb66b" stop-opacity=".2"/><stop offset="1" stop-color="#edb66b" stop-opacity="0"/></radialGradient>
+            <linearGradient id="fox-fur" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eeb174"/><stop offset="1" stop-color="#cc8150"/></linearGradient>
+          </defs>
+          <g class="window-scene">
+            <path d="M193 344V184a153 153 0 0 1 306 0v160Z" fill="url(#window-glow)" stroke="#657378" stroke-width="2"/>
+            <path d="M207 344V184a139 139 0 0 1 278 0v160Z" fill="none" stroke="#445761"/>
+            <path d="M345 32v312M195 203h303" stroke="#657378" stroke-width="2"/>
+            <path d="M207 315q65-85 138-6 78-110 140-18v53H207Z" fill="#203745"/>
+            <path d="M208 336q54-48 137-6 70-52 140-12v26H208Z" fill="#172b38"/>
+            <circle cx="410" cy="116" r="30" fill="#e8e0c2"/><circle cx="421" cy="105" r="27" fill="#203746"/>
+            <g fill="#bdc1ac"><circle cx="265" cy="119" r="1.6"/><circle cx="298" cy="166" r="1"/><circle cx="457" cy="168" r="1.4"/><circle cx="233" cy="228" r="1.6"/><circle cx="390" cy="242" r="1.2"/><circle cx="462" cy="265" r="1"/></g>
+            <path d="m292 77 1.8 5.2 5.2 1.8-5.2 1.8-1.8 5.2-1.8-5.2-5.2-1.8 5.2-1.8Z" fill="#c6bb94"/>
+            <path d="m254 270 1.5 4.5 4.5 1.5-4.5 1.5-1.5 4.5-1.5-4.5-4.5-1.5 4.5-1.5Z" fill="#acb7ad"/>
+            <path d="M186 345h319" stroke="#8c9184" stroke-width="6" stroke-linecap="round"/>
+          </g>
+          <g stroke="#788884" fill="none" stroke-width="1">
+            <path d="M100 183h55m-27-27v55" opacity=".35"/><circle cx="128" cy="184" r="16" opacity=".35"/>
+            <path d="M546 131q33-38 58-5" stroke-dasharray="3 5"/><path d="m598 117 7 10-12 1"/>
+          </g>
+          <text x="542" y="105" fill="#98a49e" font-size="13" font-family="serif" transform="rotate(7 542 105)">暂不解释宇宙</text>
+          <g class="lamp-light" aria-hidden="true"><ellipse cx="456" cy="413" rx="208" ry="142" fill="url(#desk-glow)"/><path d="m506 225-153 229h286L551 228Z" fill="url(#beam)"/></g>
+          <g class="fox" stroke="#152735" stroke-width="2.5" stroke-linejoin="round">
+            <path d="M373 440c-75-54-137 15-105 77 23 45 133 46 166-1 22-31-8-68-39-49 22 12 9 38-20 39-64 2-77-24-49-37" fill="url(#fox-fur)"/>
+            <path d="M282 450c-24 26-25 56 6 77 15 11 39 16 62 16l-14-19 15-6-19-10 12-9c-24-8-40-27-34-46Z" fill="#eadcc0" stroke="none"/>
+            <path d="M338 306c-39 37-39 98-30 151l118 2c5-60-5-116-37-152Z" fill="url(#fox-fur)"/>
+            <path d="m337 307 29 18 27-16-6 28 10-1-23 40-15-17-10 10-23-34 13 3Z" fill="#eddfc4" stroke="none"/>
+            <path d="M294 222 286 144l65 49q27-5 53 7l61-46-12 93-23 58-60 30-62-35Z" fill="url(#fox-fur)"/>
+            <path d="m299 172 8 49 28-24Z" fill="#684e48" stroke="none"/><path d="m447 183-37 24 27 21Z" fill="#684e48" stroke="none"/>
+            <path d="M294 233q38 7 74 45 40-35 84-34l-24 61-58 30-62-35Z" fill="#f0e2c8" stroke="none"/>
+            <path d="M322 243q10-9 20 1m56 0q10-9 19 0" fill="none" stroke="#26313a" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="m357 280 24 1-12 12Z" fill="#28323a" stroke="none"/>
+            <path d="m369 291 0 10m0 0q-7 8-15 1m15-1q7 8 15 1" fill="none" stroke="#5f5449" stroke-width="2" stroke-linecap="round"/>
+            <path d="M319 374q-3 48 19 71l24-8-17-63" fill="#d68c56"/><path d="M397 371q13 32 12 67l-25 3-9-51" fill="#d68c56"/>
+            <path d="M337 433q13-9 25 0l6 19h-33Z" fill="#4c4540"/><path d="M384 430q13-7 25 0l5 21h-33Z" fill="#4c4540"/>
+          </g>
+          <g class="desk" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M146 459h464l18 16H127Z" fill="#9c7756" stroke="#142737" stroke-width="3"/>
+            <path d="M127 475h501v12H127Z" fill="#b38c61" stroke="#142737" stroke-width="3"/>
+            <path d="m161 488-15 111m449-111 15 111" stroke="#a18b70" stroke-width="9"/>
+            <path d="M169 520h420" stroke="#645e52" stroke-width="3"/>
+            <path d="M143 600h20m435 0h19" stroke="#51616a" stroke-width="2"/>
+          </g>
+          <g class="lamp-hardware" stroke="#142737" stroke-width="3" stroke-linejoin="round">
+            <path d="M554 451h52q9 0 10 9h-72q1-9 10-9Z" fill="#ccaa73"/>
+            <path d="m579 451-25-124 45-91-61-41" fill="none" stroke="#c8ac7c" stroke-width="8"/>
+            <circle cx="554" cy="327" r="8" fill="#c8ac7c"/><circle cx="599" cy="236" r="8" fill="#c8ac7c"/>
+            <path d="m510 184 37 10 21 40-83-21Z" fill="#8e9c88"/>
+            <path d="m485 213 83 21" stroke="#dfc28b" stroke-width="6"/>
+            <path class="bulb" d="m510 221 28 7q-17 13-28-7Z" fill="#f4d69b" stroke="none"/>
+          </g>
+          <g class="notebook" stroke="#142737" stroke-width="2" stroke-linejoin="round">
+            <path d="m315 446 44-10 31 7 35-6 46 14-80 13Z" fill="#e9dfc6"/>
+            <path d="m315 446 0 7 76 18 80-13v-7l-80 13Z" fill="#aaa58f"/>
+            <path d="m390 444 1 20" fill="none" stroke="#a19e8a"/>
+            <path d="m341 446 29 6m-15-10 20 5m34-1 23 4m-25 2 34 3" fill="none" stroke="#a39a7f" stroke-width="1.2"/>
+            <path d="m427 446 44-24" stroke="#cf9b5e" stroke-width="4"/><path d="m472 422 7-3-4 7Z" fill="#dcd6bd" stroke="none"/>
+          </g>
+          <g class="tea" stroke="#142737" stroke-width="2.5">
+            <path d="M262 418h14q17 0 13 17-3 11-17 8" fill="none" stroke="#a0b2a8" stroke-width="6"/>
+            <path d="M235 412h39l-3 34q-16 14-32 0Z" fill="#9aafa4"/>
+            <ellipse cx="254" cy="412" rx="19" ry="5" fill="#6c786c"/>
+            <path class="tea-steam steam-one" d="M248 398c-10-9 10-13 0-23" fill="none" stroke="#aeb7a6" stroke-width="1.5"/>
+            <path class="tea-steam steam-two" d="M260 397c-10-9 10-13 0-23" fill="none" stroke="#aeb7a6" stroke-width="1.5"/>
+          </g>
+          <g class="star-plant" stroke="#9ca989" stroke-width="2" fill="none" stroke-linecap="round">
+            <path d="M180 425v-69m0 43-20-18m20-6 18-16"/><path d="M180 390q-24 2-26-18 22-1 26 18Zm0-15q0-25 23-25-2 23-23 25" fill="#657f70"/>
+            <path d="m180 336 4 12 12 4-12 4-4 12-4-12-12-4 12-4Z" fill="#d7bd79" stroke="none"/>
+            <path d="M161 424h38l-7 30h-24Z" fill="#b7805f" stroke="#142737" stroke-width="2.5"/><path d="M158 420h44v8h-44Z" fill="#cc9671" stroke="#142737" stroke-width="2.5"/>
+          </g>
+          <g stroke="#142737" stroke-width="2">
+            <path d="m479 539 54-5 3 54-54 5Z" fill="#71877b"/><path d="m537 530 18-2 5 59-20 2Z" fill="#bf9567"/><path d="m560 548 15-6 18 43-16 6Z" fill="#697f8a"/>
+            <path d="m486 550 40-4m-39 9 40-4" stroke="#b3bca2" stroke-width="1"/>
+          </g>
+          <path d="M86 611h556" stroke="#63716f" stroke-opacity=".45"/>
+          <g fill="#b2baad" font-family="monospace" font-size="10" letter-spacing="2"><text x="89" y="636">DO NOT DISTURB THE SMALL IDEAS.</text><text x="610" y="636">✦</text></g>
+        </svg>
+        <span class="handwritten art-note">灵感不来，就先泡杯茶。</span>
+      </div>
+      <div class="hero-bottom"><span>独立运转 · 不急着得出结论</span><span class="scroll-note">SCROLL TO WANDER <span aria-hidden="true">↓</span></span><span>EST. TONIGHT</span></div>
+    </section>
+
+    <section class="experiment-section shell" id="experiment" aria-labelledby="experiment-heading">
+      <div class="section-heading"><span class="section-index">01 / 动手试试</span><span class="eyebrow">A SMALL EXPERIMENT</span></div>
+      <div class="experiment-layout">
+        <div class="experiment-copy">
+          <h2 id="experiment-heading">给混沌<br>一点<span class="serif-italic">秩序。</span></h2>
+          <p>散落的星星，也许只是在等一个<br class="desktop-break">奇怪的想法把它们连起来。</p>
+          <p class="small-copy">按下按钮，看看这片夜空藏着什么。<br>也可以轻触星空，留下一点涟漪。</p>
+          <div class="experiment-buttons"><button class="button button-amber" id="order-button" type="button" aria-pressed="false">让星星归位 <span aria-hidden="true">↗</span></button><button class="text-button" id="scatter-button" type="button">再打乱一点 <span aria-hidden="true">↻</span></button></div>
+          <p class="experiment-status" id="experiment-status" role="status">当前状态：自由散步中</p>
+        </div>
+        <div class="star-map">
+          <div class="map-topline"><span><i></i> 观测窗 / THE LITTLE UNIVERSE</span><button class="motion-button" id="motion-button" type="button" aria-pressed="false" aria-label="暂停星星漂浮">Ⅱ <span>暂停漂浮</span></button></div>
+          <canvas id="constellation" width="800" height="500" tabindex="0" role="img" aria-label="互动星图。按回车或空格切换秩序，方向键移动涟漪位置。" aria-describedby="map-instructions">你的浏览器暂不支持星图画布。下方文字会说明实验状态。</canvas>
+          <div class="map-label" id="map-label" aria-hidden="true"><span>✧</span> 所有偶然，都还没有名字。</div>
+          <div class="map-bottomline"><span id="star-count">24 颗星星 · 无限种可能</span><span id="map-instructions">点击 / 轻触 · 键盘 Enter</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="notes-section" id="notes" aria-labelledby="notes-heading">
+      <div class="shell notes-inner">
+        <div class="section-heading"><span class="section-index">02 / 夜间手记</span><span class="eyebrow">FIELD NOTES FROM NOWHERE</span></div>
+        <div class="notes-heading"><h2 id="notes-heading">还没想明白，<br>也值得<span>记下来。</span></h2><p>不是答案集。<br>是一些在夜里被捡到的小东西。</p></div>
+        <div class="notes-grid">
+          <article class="field-note note-moon"><div class="note-topline"><span>观察记录</span><span>NOTE / 001</span></div><svg viewBox="0 0 250 130" aria-hidden="true"><circle cx="118" cy="61" r="40" fill="none" stroke="currentColor" stroke-width="1"/><path d="M129 23a40 40 0 1 0 24 67 38 38 0 0 1-24-67Z" fill="currentColor" opacity=".14"/><path d="m55 109 135-84m-18 5 18-5-8 17" stroke="currentColor" fill="none"/><path d="M57 36h17m-8-8v17m126 64h11m-5-5v11" stroke="currentColor"/><text x="169" y="76" fill="currentColor" font-size="12" transform="rotate(-12 169 76)">不必很圆</text></svg><h3>月亮也有<br>没完成的时候。</h3><p>所以，今天只做出一个小小的开始，<br>应该也可以算数。</p><span class="note-foot">关于「不必一次做好」</span></article>
+          <article class="field-note note-seed"><div class="note-topline"><span>待验证的猜想</span><span>NOTE / 002</span></div><h3>无用的东西，<br>会不会是生活的<br><span class="handwritten">秘密养分？</span></h3><p>比如落在桌沿的光，<br>比如一段没有目的的散步，<br>比如给一株植物取一个很长的名字。</p><div class="seed-doodle" aria-hidden="true"><svg viewBox="0 0 140 85"><path d="M68 79V30M68 60Q30 66 29 31q34-1 39 29M68 45q0-35 38-35-2 34-38 35" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M43 80h51" stroke="currentColor"/><circle cx="21" cy="17" r="2" fill="currentColor"/><path d="m111 56 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z" fill="currentColor"/></svg></div><span class="note-foot">实验条件：保持一点点好奇</span></article>
+          <article class="field-note note-slip"><div class="note-topline"><span>口袋里的纸条</span><span>NOTE / ∞</span></div><div class="slip-content"><span class="quote-mark" aria-hidden="true">“</span><p id="paper-quote" aria-live="polite">不是每一次走神，<br>都需要被纠正。</p><span class="slip-number" id="slip-number">第 01 张 / 共 06 张</span></div><button class="paper-button" id="paper-button" type="button">再抽一张 <span aria-hidden="true">↗</span></button></article>
+        </div>
+        <div class="notes-tail"><span>以上均为实验室的虚构随想，欢迎带走一点点。</span><span aria-hidden="true">✳</span></div>
+      </div>
+    </section>
+
+    <section class="goodnight shell" aria-label="晚安留言"><span class="goodnight-star" aria-hidden="true">✦</span><p>世界很大，<br>今晚先照亮这一小块。</p><span>愿你拥有一点不被催促的时间。</span><a href="#top" aria-label="回到页面顶部">回到灯下 <span aria-hidden="true">↑</span></a></section>
+  </main>
+  <footer class="site-footer shell"><a href="#top">哈基狐的夜间实验室 <span class="version">v1.0</span></a><span>纯好奇心驱动 · 没有追踪，只有星光</span><span class="footer-sign">MADE OF SMALL WONDERS <span aria-hidden="true">✦</span></span></footer>
+  <noscript><p class="noscript-message">桌灯和星图需要 JavaScript 才能互动。没关系，夜间手记和这只狐狸仍然在这里等你。</p></noscript>
 </body>
 </html>
