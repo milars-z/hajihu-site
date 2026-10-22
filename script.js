@@ -85,6 +85,14 @@
     const question = '这里是我的私密空间，只有最亲密的人才能进来，你叫什么';
     const historyKey = 'hajihuMoonRoom';
     const hasHistory = typeof window.history?.pushState === 'function' && typeof window.history?.back === 'function';
+    // A reload closes the native dialog but can retain its URL/history marker.
+    // Normalize that stale entry so reopening cannot stack two room entries.
+    if (hasHistory && typeof window.history.replaceState === 'function' && window.location && (window.history.state?.[historyKey] || window.location.hash === '#moon-room')) {
+      const cleanState = { ...(window.history.state || {}) };
+      delete cleanState[historyKey];
+      const cleanUrl = window.location.hash === '#moon-room' ? `${window.location.pathname}${window.location.search}` : window.location.href;
+      window.history.replaceState(cleanState, '', cleanUrl);
+    }
     let previousFocus = null;
     let roomHistoryActive = false;
     let historyReturning = false;
@@ -111,7 +119,7 @@
       previousFocus = document.activeElement;
       resetRoom();
       roomDialog.showModal();
-      if (hasHistory && pushHistory) {
+      if (hasHistory && pushHistory && !window.history.state?.[historyKey]) {
         window.history.pushState({ ...(window.history.state || {}), [historyKey]: true }, '', '#moon-room');
         roomHistoryActive = true;
       } else roomHistoryActive = hasHistory && Boolean(window.history.state?.[historyKey]);

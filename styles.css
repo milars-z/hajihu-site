@@ -35,3 +35,8 @@ button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:inh
 
 /* Readable paper annotations and complete visible-label matching. */
 .notes-section .eyebrow,.notes-heading>p,.note-topline,.note-topline span:last-child,.field-note>p,.note-foot,.slip-number,.notes-tail{color:#53665d}
+/* v1.4 — a second letter, with room left for the first. */
+.letter-brief{display:flex;align-items:center;justify-content:space-between;gap:38px;padding-block:31px 33px;border-bottom:1px solid var(--line)}.letter-brief .section-index{color:#acb49b;font-size:10px}.letter-brief h2{font:400 27px/1.5 var(--serif);letter-spacing:.025em;margin:13px 0 8px}.letter-brief h2 a:hover{color:var(--amber)}.letter-brief p{font-size:11px;line-height:1.9;color:#99aeb4;margin:0}.letter-brief>.explore-link{font-size:11px;gap:26px;white-space:nowrap;margin-top:0;flex-shrink:0}.letter-brief .letter-meta{margin-top:13px}.maintenance-diagram{margin-top:5px}.maintenance-diagram img{background:#12232f}.diagram-credit{font-size:10px;line-height:1.9;color:#93a6a9;border-top:1px solid var(--line);padding-top:18px}
+@media(max-width:800px){.letter-brief{gap:25px;padding-block:27px}.letter-brief h2{font-size:24px}.letter-brief>.explore-link{gap:17px;font-size:10px}}
+@media(max-width:560px){.letter-brief{display:block;padding-block:27px}.letter-brief h2{font-size:25px;margin-top:14px}.letter-brief>.explore-link{margin-top:20px;font-size:11px;gap:29px}.letter-brief p{font-size:11px}.maintenance-diagram{margin-inline:-6px}.maintenance-diagram figcaption{margin-inline:6px}.diagram-credit{font-size:9px}}
+@media(max-width:360px){.letter-brief h2{font-size:23px}}
