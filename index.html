@@ -7,8 +7,8 @@
   <meta name="description" content="哈基狐的夜间实验室。收集一点星光、整理一些混沌，给还没长大的念头留一盏灯。">
   <title>哈基狐的夜间实验室 · 给好奇心留一盏灯</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111f2d'/%3E%3Cpath d='M12 12 30 23 52 12 48 42 32 54 16 42Z' fill='%23e5a261'/%3E%3Cpath d='m16 32 16 10 16-10-5 13-11 9-11-9Z' fill='%23f3e6ca'/%3E%3Cpath d='m27 42 5 5 5-5Z' fill='%23111f2d'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=1.2">
-  <script src="script.js?v=1.2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=1.3">
+  <script src="script.js?v=1.3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到正文</a>
@@ -30,7 +30,7 @@
         <p class="hero-description">白天用来赶路，夜晚用来迷路。<br>这里收留不成熟的想法、无用的浪漫，<br class="desktop-break">和一只不太愿意睡觉的狐狸。</p>
         <a class="explore-link" href="#experiment">看看今晚在捣鼓什么 <span class="icon icon-arrow icon-turn-down" aria-hidden="true"></span></a>
         <div class="lamp-control">
-          <button class="lamp-toggle" id="lamp-toggle" type="button" aria-pressed="true" aria-label="桌灯已开启，点击关灯"><span class="switch" aria-hidden="true"><i></i></span><span id="lamp-label">留一盏灯</span><span class="lamp-state" id="lamp-state">ON</span></button>
+          <button class="lamp-toggle" id="lamp-toggle" type="button" aria-pressed="true" aria-label="留一盏灯：桌灯已开启，点击关灯"><span class="switch" aria-hidden="true"><i></i></span><span id="lamp-label">留一盏灯</span><span class="lamp-state" id="lamp-state">ON</span></button>
           <span class="lamp-hint" id="lamp-hint">夜再深一点，也没关系。</span>
         </div>
       </div>
@@ -123,7 +123,7 @@
         <p class="fox-thought" id="fox-thought" role="status"></p>
         <span class="handwritten art-note">灵感不来，就先泡杯茶。</span>
       </div>
-      <div class="hero-bottom"><span>独立运转 · 不急着得出结论</span><span class="scroll-note">SCROLL TO WANDER <span class="icon icon-arrow icon-point-down" aria-hidden="true"></span></span><span>EST. TONIGHT</span></div>
+      <div class="hero-bottom"><span>独立运转 · 不急着得出结论</span><span class="scroll-note">SCROLL TO WANDER <span class="icon icon-arrow icon-point-down" aria-hidden="true"></span></span><button class="moon-door" id="moon-door" type="button" aria-label="窗后有一点光：打开月亮小窗，进入公开网页中的口令彩蛋" aria-haspopup="dialog"><span class="moon-door-icon" aria-hidden="true"></span><span>窗后有一点光</span></button></div>
     </section>
 
     <section class="letter-feature shell" id="letters" aria-labelledby="letter-feature-heading">
@@ -142,7 +142,7 @@
           <p class="experiment-status" id="experiment-status" role="status">当前状态：自由散步中</p>
         </div>
         <div class="star-map">
-          <div class="map-topline"><span><i></i> 观测窗 / THE LITTLE UNIVERSE</span><button class="motion-button" id="motion-button" type="button" aria-pressed="false" aria-label="暂停星星漂浮"><span class="icon icon-pause" aria-hidden="true"></span> <span>暂停漂浮</span></button></div>
+          <div class="map-topline"><span><i></i> 观测窗 / THE LITTLE UNIVERSE</span><button class="motion-button" id="motion-button" type="button" aria-pressed="false" aria-label="暂停漂浮"><span class="icon icon-pause" aria-hidden="true"></span> <span>暂停漂浮</span></button></div>
           <canvas id="constellation" width="800" height="500" tabindex="0" role="img" aria-label="互动星图。按回车或空格切换秩序，方向键移动涟漪位置。" aria-describedby="map-instructions">你的浏览器暂不支持星图画布。下方文字会说明实验状态。</canvas>
           <div class="map-label" id="map-label" aria-hidden="true"><span class="icon icon-star" aria-hidden="true"></span> 所有偶然，都还没有名字。</div>
           <div class="map-bottomline"><span id="star-count">24 颗星星 · 无限种可能</span><span id="map-instructions">点击 / 轻触 · 键盘 Enter</span></div>
@@ -172,9 +172,15 @@
       </div>
     </section>
 
-    <section class="goodnight shell" aria-label="晚安留言"><span class="goodnight-star icon icon-star" aria-hidden="true"></span><p>世界很大，<br>今晚先照亮这一小块。</p><span>愿你拥有一点不被催促的时间。</span><a href="#top" aria-label="回到页面顶部">回到灯下 <span class="icon icon-arrow icon-point-up" aria-hidden="true"></span></a></section>
+    <section class="goodnight shell" aria-label="晚安留言"><span class="goodnight-star icon icon-star" aria-hidden="true"></span><p>世界很大，<br>今晚先照亮这一小块。</p><span>愿你拥有一点不被催促的时间。</span><a href="#top" aria-label="回到灯下，回到页面顶部">回到灯下 <span class="icon icon-arrow icon-point-up" aria-hidden="true"></span></a></section>
   </main>
-  <footer class="site-footer shell"><a href="#top">哈基狐的夜间实验室 <span class="version">v1.2</span></a><span>纯好奇心驱动 · 没有追踪，只有星光</span><span class="footer-sign">MADE OF SMALL WONDERS <span class="icon icon-star" aria-hidden="true"></span></span></footer>
+  <dialog class="moon-room" id="moon-room" aria-labelledby="moon-room-title" aria-describedby="room-disclaimer">
+    <div class="room-frame"><button class="room-close" id="room-close" type="button" aria-label="关闭月亮小窗，回到实验室"><span aria-hidden="true"></span></button><p class="room-eyebrow">A SMALL WINDOW / 月光会客室</p><h2 id="moon-room-title">这里是我的私密空间，只有最亲密的人才能进来，你叫什么</h2><p class="room-disclaimer" id="room-disclaimer">这是公开网页里的口令彩蛋，不是真正的私密或安全空间，请勿输入敏感信息。</p>
+      <div id="room-gate"><form id="room-form" method="dialog" novalidate><label for="room-name">你的名字</label><div class="room-input-row"><input id="room-name" type="text" autocomplete="off" spellcheck="false" autocapitalize="none" maxlength="40" placeholder="一个名字，不是密码" aria-describedby="room-disclaimer room-error" required><button class="button button-amber" type="submit">推开小窗 <span class="icon icon-arrow" aria-hidden="true"></span></button></div><p class="room-error" id="room-error" role="status"></p></form><p class="room-gate-note">一扇想象中的窗，一段不需要赶路的时间。</p></div>
+      <section class="room-welcome" id="room-welcome" aria-label="月光会客室" hidden><div class="room-night" id="room-night" role="img" aria-label="一扇透着暖光的拱形小窗，窗外还没有星星"><div class="room-starfield" id="room-starfield" aria-hidden="true"></div><div class="room-window" aria-hidden="true"><i></i><span></span></div><div class="room-sill" aria-hidden="true"></div><span class="room-scene-caption" aria-hidden="true">不急，先把月光坐暖。</span></div><p class="room-welcome-note">这里没有要完成的事。<br>如果愿意，就给这小片夜空添一颗星星。</p><div class="room-actions"><button class="button button-amber" id="room-star-button" type="button">留一颗星星 <span class="icon icon-star" aria-hidden="true"></span></button><button class="text-button" id="room-back" type="button">回到门口</button></div><p class="room-star-status" id="room-star-status" role="status">星光只在此刻亮起，关上小窗就会散去。</p></section>
+    </div>
+  </dialog>
+  <footer class="site-footer shell"><a href="#top">哈基狐的夜间实验室 <span class="version">v1.3</span></a><span>纯好奇心驱动 · 没有追踪，只有星光</span><span class="footer-sign">MADE OF SMALL WONDERS <span class="icon icon-star" aria-hidden="true"></span></span></footer>
   <noscript><p class="noscript-message">桌灯和星图需要 JavaScript 才能互动。没关系，夜间手记和这只狐狸仍然在这里等你。</p></noscript>
 </body>
 </html>

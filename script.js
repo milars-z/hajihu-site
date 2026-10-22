@@ -18,7 +18,7 @@
     lampOn = !lampOn;
     document.body.classList.toggle('lights-out', !lampOn);
     lampToggle.setAttribute('aria-pressed', String(lampOn));
-    lampToggle.setAttribute('aria-label', lampOn ? '桌灯已开启，点击关灯' : '桌灯已关闭，点击开灯');
+    lampToggle.setAttribute('aria-label', lampOn ? '留一盏灯：桌灯已开启，点击关灯' : '借一点月光：桌灯已关闭，点击开灯');
     lampLabel.textContent = lampOn ? '留一盏灯' : '借一点月光';
     lampState.textContent = lampOn ? 'ON' : 'OFF';
     lampHint.textContent = lampOn ? '夜再深一点，也没关系。' : '月亮会暂时接班。';
@@ -69,6 +69,110 @@
     seedButton.replaceChildren(document.createTextNode(stage.label), arrow);
   });
 
+  // A public, source-visible easter egg, not authentication or a security boundary.
+  const roomDialog = document.getElementById('moon-room');
+  const roomDoor = document.getElementById('moon-door');
+  if (roomDialog && roomDoor && typeof roomDialog.showModal === 'function') {
+    const roomTitle = document.getElementById('moon-room-title');
+    const roomInput = document.getElementById('room-name');
+    const roomGate = document.getElementById('room-gate');
+    const roomWelcome = document.getElementById('room-welcome');
+    const roomError = document.getElementById('room-error');
+    const starfield = document.getElementById('room-starfield');
+    const starButton = document.getElementById('room-star-button');
+    const starStatus = document.getElementById('room-star-status');
+    const roomNight = document.getElementById('room-night');
+    const question = '这里是我的私密空间，只有最亲密的人才能进来，你叫什么';
+    const historyKey = 'hajihuMoonRoom';
+    const hasHistory = typeof window.history?.pushState === 'function' && typeof window.history?.back === 'function';
+    let previousFocus = null;
+    let roomHistoryActive = false;
+    let historyReturning = false;
+    let starCount = 0;
+
+    function resetStars() {
+      starCount = 0;
+      starfield.replaceChildren();
+      starButton.replaceChildren(document.createTextNode('留一颗星星 '), makeIcon('star'));
+      starStatus.textContent = '星光只在此刻亮起，关上小窗就会散去。';
+      roomNight.setAttribute('aria-label', '一扇透着暖光的拱形小窗，窗外还没有星星');
+    }
+    function resetRoom() {
+      roomTitle.textContent = question;
+      roomInput.value = '';
+      roomInput.removeAttribute('aria-invalid');
+      roomError.textContent = '';
+      roomGate.hidden = false;
+      roomWelcome.hidden = true;
+      resetStars();
+    }
+    function openRoom(pushHistory = true) {
+      if (roomDialog.open || historyReturning) return;
+      previousFocus = document.activeElement;
+      resetRoom();
+      roomDialog.showModal();
+      if (hasHistory && pushHistory) {
+        window.history.pushState({ ...(window.history.state || {}), [historyKey]: true }, '', '#moon-room');
+        roomHistoryActive = true;
+      } else roomHistoryActive = hasHistory && Boolean(window.history.state?.[historyKey]);
+      roomInput.focus();
+    }
+    roomDoor.addEventListener('click', () => openRoom());
+    document.getElementById('room-close').addEventListener('click', () => roomDialog.close());
+    // Native dialog supplies focus containment and Escape dismissal.
+    roomDialog.addEventListener('close', () => {
+      resetRoom();
+      const returnBack = hasHistory && roomHistoryActive && window.history.state?.[historyKey];
+      roomHistoryActive = false;
+      if (returnBack) {
+        historyReturning = true;
+        window.history.back();
+      }
+      if (previousFocus && previousFocus.isConnected && typeof previousFocus.focus === 'function') previousFocus.focus();
+      else roomDoor.focus();
+    });
+    window.addEventListener('popstate', event => {
+      historyReturning = false;
+      if (event.state?.[historyKey]) openRoom(false);
+      else {
+        roomHistoryActive = false;
+        if (roomDialog.open) roomDialog.close();
+      }
+    });
+    document.getElementById('room-form').addEventListener('submit', event => {
+      event.preventDefault();
+      if (roomInput.value.trim().toLowerCase() !== 'milars') {
+        roomInput.setAttribute('aria-invalid', 'true');
+        roomError.textContent = roomInput.value.trim() ? '这次没有对上小窗的暗号。再试一个名字？' : '先写下一个名字，再轻轻推窗。';
+        roomInput.focus();
+        return;
+      }
+      roomInput.value = '';
+      roomInput.removeAttribute('aria-invalid');
+      roomError.textContent = '';
+      roomGate.hidden = true;
+      roomWelcome.hidden = false;
+      roomTitle.textContent = 'milars，欢迎来窗边坐坐。';
+      starButton.focus();
+    });
+    document.getElementById('room-back').addEventListener('click', () => { resetRoom(); roomInput.focus(); });
+    starButton.addEventListener('click', () => {
+      if (starCount === 12) { resetStars(); return; }
+      const points = [[18,25],[79,20],[32,15],[65,37],[11,58],[87,55],[26,45],[73,69],[40,29],[59,13],[19,77],[82,83]];
+      const star = makeIcon('star');
+      star.classList.add('room-star');
+      star.style.left = `${points[starCount][0]}%`;
+      star.style.top = `${points[starCount][1]}%`;
+      starfield.append(star);
+      starCount++;
+      starStatus.textContent = `这扇窗暂时借住着 ${starCount} 颗星星。离开时，它们会回到夜空。`;
+      roomNight.setAttribute('aria-label', `一扇透着暖光的拱形小窗，窗外有 ${starCount} 颗星星`);
+      if (starCount === 12) starButton.replaceChildren(document.createTextNode('把星光还给夜空 '), makeIcon('star'));
+    });
+  } else if (roomDoor) {
+    roomDoor.hidden = true;
+  }
+
   const canvas = document.getElementById('constellation');
   const ctx = canvas.getContext('2d');
   const orderButton = document.getElementById('order-button');
@@ -105,7 +209,7 @@
 
   function syncMotionButton() {
     motionButton.setAttribute('aria-pressed', String(paused));
-    motionButton.setAttribute('aria-label', paused ? '开始星星漂浮' : '暂停星星漂浮');
+    motionButton.setAttribute('aria-label', paused ? '开始漂浮' : '暂停漂浮');
     motionButton.replaceChildren(makeIcon(paused ? 'play' : 'pause'));
     const label = document.createElement('span');
     label.textContent = paused ? '开始漂浮' : '暂停漂浮';
