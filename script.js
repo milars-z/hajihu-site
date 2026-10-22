@@ -1,6 +1,13 @@
 (() => {
   'use strict';
 
+  function makeIcon(kind) {
+    const icon = document.createElement('span');
+    icon.setAttribute('class', `icon icon-${kind}`);
+    icon.setAttribute('aria-hidden', 'true');
+    return icon;
+  }
+
   const lampToggle = document.getElementById('lamp-toggle');
   const lampLabel = document.getElementById('lamp-label');
   const lampState = document.getElementById('lamp-state');
@@ -34,6 +41,32 @@
     quoteIndex = (quoteIndex + 1) % quotes.length;
     paperQuote.replaceChildren(document.createTextNode(quotes[quoteIndex][0]), document.createElement('br'), document.createTextNode(quotes[quoteIndex][1]));
     slipNumber.textContent = `第 ${String(quoteIndex + 1).padStart(2, '0')} 张 / 共 06 张`;
+  });
+
+  const foxThoughts = ['嘘，今天的月亮是半糖的。', '我没有发呆。我在等一个念头路过。', '尾巴负责保暖，好奇心负责迷路。', '如果星星掉下来，就种在花盆里。', '这个鼻尖只接收善意和小饼干。'];
+  let foxThoughtIndex = 0;
+  document.getElementById('fox-nose-button').addEventListener('click', () => {
+    const thought = document.getElementById('fox-thought');
+    thought.textContent = foxThoughts[foxThoughtIndex];
+    thought.classList.toggle('is-visible', true);
+    foxThoughtIndex = (foxThoughtIndex + 1) % foxThoughts.length;
+  });
+
+  const seedStages = [
+    { story: ['它还没有决定，', '要成为一片叶子，还是一颗小星星。'], label: '借它一点月光', description: '一粒种子在月光下，等待发芽' },
+    { story: ['先伸一个小小的懒腰，', '不着急向整个世界介绍自己。'], label: '再陪它待一会儿', description: '种子发芽了，长出两片小叶子' },
+    { story: ['原来它想种出的，', '是属于自己的那一点光。'], label: '让它重新做梦', description: '小芽的顶端开出一颗金色的星星花' }
+  ];
+  let seedStage = 0;
+  const seedButton = document.getElementById('seed-button');
+  seedButton.addEventListener('click', () => {
+    seedStage = (seedStage + 1) % seedStages.length;
+    const stage = seedStages[seedStage];
+    document.getElementById('seed-window').setAttribute('data-stage', String(seedStage));
+    document.getElementById('seed-art').setAttribute('aria-label', stage.description);
+    document.getElementById('seed-story').replaceChildren(document.createTextNode(stage.story[0]), document.createElement('br'), document.createTextNode(stage.story[1]));
+    const arrow = makeIcon('arrow');
+    seedButton.replaceChildren(document.createTextNode(stage.label), arrow);
   });
 
   const canvas = document.getElementById('constellation');
@@ -73,7 +106,7 @@
   function syncMotionButton() {
     motionButton.setAttribute('aria-pressed', String(paused));
     motionButton.setAttribute('aria-label', paused ? '开始星星漂浮' : '暂停星星漂浮');
-    motionButton.replaceChildren(document.createTextNode(paused ? '▷ ' : 'Ⅱ '));
+    motionButton.replaceChildren(makeIcon(paused ? 'play' : 'pause'));
     const label = document.createElement('span');
     label.textContent = paused ? '开始漂浮' : '暂停漂浮';
     motionButton.append(label);
@@ -173,11 +206,11 @@
     map.classList.toggle('is-ordered', ordered);
     orderButton.setAttribute('aria-pressed', String(ordered));
     orderButton.replaceChildren(document.createTextNode(ordered ? '让它们自由' : '让星星归位'));
-    const arrow = document.createElement('span'); arrow.setAttribute('aria-hidden', 'true'); arrow.textContent = ordered ? '↗' : '↗'; orderButton.append(arrow);
+    orderButton.append(makeIcon('arrow'));
     stars.forEach((star, i) => { star.tx = ordered ? shape[i][0] : .08 + Math.random() * .84; star.ty = ordered ? shape[i][1] : .12 + Math.random() * .62; });
     status.textContent = ordered ? '发现了：一只藏在星星里的狐狸。' : '当前状态：自由散步中';
     mapLabel.replaceChildren();
-    const sparkle = document.createElement('span'); sparkle.textContent = ordered ? '✦' : '✧'; mapLabel.append(sparkle, document.createTextNode(ordered ? '原来，混沌里也住着一只狐狸。' : '所有偶然，都还没有名字。'));
+    const sparkle = makeIcon('star'); mapLabel.append(sparkle, document.createTextNode(ordered ? '原来，混沌里也住着一只狐狸。' : '所有偶然，都还没有名字。'));
     canvas.setAttribute('aria-label', ordered ? '星星连成了一只狐狸。按回车或空格让它们重新散开，方向键移动涟漪位置。' : '互动星图。按回车或空格让星星连成狐狸，方向键移动涟漪位置。');
     ripple = null;
     moveToTargets();
