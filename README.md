@@ -2,7 +2,7 @@
 
 Hajihu's little corner of the internet.
 
-一个纯 HTML、CSS、JavaScript 的静态小网站。给好奇心留一盏灯。当前版本：v1.1。
+一个纯 HTML、CSS、JavaScript 的静态小网站。给好奇心留一盏灯。当前版本：v1.1.1。
 
 ## 内容
 
@@ -50,3 +50,7 @@ script.js
 - 桌灯、星图、纸条：`script.js`
 
 无需密钥、环境变量或后端服务。
+
+## 静态资源缓存
+
+HTML 中的 CSS 与 JavaScript 使用同一版本查询参数（当前为 `?v=1.1.1`），避免发布后浏览器将新 HTML 与旧资源混用。每次更改样式或脚本时，同步更新这两个版本参数与页脚版本。v1.1.1 同时修正了博物馆样式与媒体查询中的多余前导字符。
