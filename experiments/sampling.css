@@ -67,3 +67,20 @@
 @media(prefers-reduced-motion:reduce){.sampling-page{scroll-behavior:auto}}
 
 .sampling-page .button,.sampling-page .text-button{transition:none}
+/* v1.6 — the first click explains itself, close to the button. */
+.sampling-guide{border-left:2px solid #e7b57888;padding:19px 22px 17px;margin:24px 0 27px;background:#e7b57805}
+.sampling-guide-kicker{font:10px/1.8 var(--sans);letter-spacing:.08em;color:#d9c394}
+.sampling-guide h3{font:400 25px/1.5 var(--serif);color:#e9e3cf;margin:8px 0 15px}
+.sampling-guide ol{padding-left:22px;margin:0 0 20px;font-size:12px;line-height:1.95;color:#c2cec7}
+.sampling-guide li{padding-left:5px;margin:0 0 9px}
+.sampling-guide li::marker{color:#e7b578;font-family:var(--mono)}
+.sampling-guide strong{font-weight:500;color:#e3d7b8}
+.sampling-guide .button{min-height:46px;font-size:12px}
+.sampling-guide-action-note{font-size:11px;line-height:1.8;color:#aebfb7;margin:11px 0 0}
+.sampling-guide-result{border-top:1px solid #c4b58b55;padding-top:16px;margin-top:18px;font-size:12px;line-height:1.95;color:#d2dccb}
+.sampling-guide-result[hidden]{display:none}
+.sampling-guide-result>strong{font:14px var(--serif);color:#e7c691}
+.sampling-guide-result>p{margin:9px 0 0}
+.sampling-guide-next{font-size:12px;line-height:1.95;color:#bdcac0;margin:20px 0 0}
+.sampling-guide-next em{font-style:normal;color:#d6d6bb}
+@media(max-width:560px){.sampling-guide{padding:17px 15px 16px;margin-top:20px}.sampling-guide h3{font-size:23px}.sampling-guide ol{padding-left:19px;font-size:12px}.sampling-guide li{padding-left:3px}.sampling-guide-kicker{font-size:9px}.sampling-guide-action-note{font-size:11px}.sampling-guide-next{font-size:12px}.sampling-guide-result{font-size:12px}}

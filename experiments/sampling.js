@@ -7,6 +7,8 @@
   const toggle = byId('sampling-toggle');
   const reset = byId('sampling-reset');
   const observe = byId('sampling-observe');
+  const demo = byId('sampling-demo');
+  const guideResult = byId('sampling-guide-result');
   const result = byId('sampling-result');
   const bLayer = byId('sampling-b-layer');
   const reading = byId('sampling-reading');
@@ -19,6 +21,7 @@
   const plotY = y => 172 - 92.5 * y;
   let showB = false;
   let measured = false;
+  let guided = false;
   let currentX = .0625;
   const setVisible = (element, visible) => visible ? element.removeAttribute('hidden') : element.setAttribute('hidden', '');
 
@@ -53,8 +56,18 @@
         ? `在 x = ${formatX(currentX)}，模拟读数为 ${format(a)}，由 A 生成。这里是已有样本的位置，A 与 B 都吻合，仍无法区分。试着把观察位置移到间隔内部。`
         : `在 x = ${formatX(currentX)}，模拟读数为 ${format(a)}，由 A 生成。A 吻合；B 预测 ${format(b)}，相差 ${format(gap)}，不能通过这次无误差检验。这只区分了 A 与 B，不证明 A 是唯一可能的曲线。`;
     }
+    // Mirror the same result beside the guide button, without another live region.
+    setVisible(guideResult, guided);
+    byId('sampling-guide-explanation').textContent = guided ? result.textContent : '';
   }
 
+  demo.addEventListener('click', () => {
+    position.value = '50';
+    showB = true;
+    measured = true;
+    guided = true;
+    render();
+  });
   toggle.addEventListener('click', () => { showB = !showB; render(); });
   position.addEventListener('input', () => {
     measured = false;
@@ -66,9 +79,10 @@
     position.value = '50';
     showB = false;
     measured = false;
+    guided = false;
     result.textContent = '已回到最初：九个旧样本不变，探针位于第一格中点。还没有补充观测。';
     render();
   });
   render();
-  [position, toggle, reset, observe].forEach(control => { control.disabled = false; });
+  [position, toggle, reset, observe, demo].forEach(control => { control.disabled = false; });
 })();

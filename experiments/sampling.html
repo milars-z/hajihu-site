@@ -8,9 +8,9 @@
   <meta name="author" content="哈基狐">
   <title>点没有撒谎，连线却可能 · 小实验 002 · 哈基狐的夜间实验室</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111f2d'/%3E%3Cpath d='M12 12 30 23 52 12 48 42 32 54 16 42Z' fill='%23e5a261'/%3E%3Cpath d='m16 32 16 10 16-10-5 13-11 9-11-9Z' fill='%23f3e6ca'/%3E%3Cpath d='m27 42 5 5 5-5Z' fill='%23111f2d'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="../styles.css?v=1.5">
-  <link rel="stylesheet" href="sampling.css?v=1.5">
-  <script src="sampling.js?v=1.5" defer></script>
+  <link rel="stylesheet" href="../styles.css?v=1.6">
+  <link rel="stylesheet" href="sampling.css?v=1.6">
+  <script src="sampling.js?v=1.6" defer></script>
 </head>
 <body class="letter-page sampling-page">
   <a class="skip-link" href="#main">跳到正文</a>
@@ -21,6 +21,19 @@
       <section class="sampling-lab" aria-labelledby="sampling-heading">
         <div class="sampling-topline"><h2 id="sampling-heading">先别急着把空白填满</h2><span>9 个旧样本 · 2 条固定曲线</span></div>
         <p class="sampling-intro">圆点是从 A 生成的九个无误差样本，B 也全部经过。灰色折线只是一种连接方式，不是被直接观测到的过程。</p>
+        <section class="sampling-guide" aria-labelledby="sampling-guide-title">
+          <span class="sampling-guide-kicker">30 秒入门 · 不用先懂公式</span>
+          <h3 id="sampling-guide-title">先跟着做一次。</h3>
+          <ol>
+            <li><strong>先显示 B。</strong>实线 A、虚线 B 都经过原来的九个点。只看这些点，还分不清两种解释。</li>
+            <li><strong>到第一格中间看。</strong>在 x = 0.06250，A 预测约 0.3827，B 预测约 0.9327，两者相差 0.55。</li>
+            <li><strong>补一次模拟观测。</strong>这个玩具规定读数由 A 生成，所以读到约 0.3827，B 的预测就没通过。它不证明 A 是唯一解释。</li>
+          </ol>
+          <button class="button button-amber" id="sampling-demo" type="button" aria-describedby="sampling-guide-action-note" disabled>带我试一次 <span class="icon icon-arrow" aria-hidden="true"></span></button>
+          <p id="sampling-guide-action-note" class="sampling-guide-action-note">一次完成这三步。结果会出现在这里，下方图形与控件也会同步更新。</p>
+          <div class="sampling-guide-result" id="sampling-guide-result" hidden><strong>刚才发生了什么</strong><p id="sampling-guide-explanation"></p></div>
+          <p class="sampling-guide-next"><strong>然后，反过来试：</strong>把下方滑块拉到最左端 x = 0，再点“补一次模拟观测”。此时 A、B 都预测 0，仍然分不清。<br>这就是要找的区别：<em>不是多看一眼就够了，还要看在哪里。</em></p>
+        </section>
         <figure class="sampling-figure">
           <svg id="sampling-chart" viewBox="0 0 720 370" role="img" aria-labelledby="sampling-chart-title sampling-chart-desc">
             <title id="sampling-chart-title">两条固定曲线与九个共同采样点</title>
@@ -58,8 +71,8 @@
       <details class="sampling-math"><summary>把构造摊开看：公式、边界与九个样本</summary><div class="sampling-math-inner"><p>定义域：0 ≤ x ≤ 1。下面两条曲线从加载到操作结束始终不变。</p><p class="sampling-formula">A(x) = sin(2πx)<br>B(x) = A(x) + 0.55 sin(8πx)</p><p>旧样本位置为 x = k / 8，k = 0, 1, …, 8。此时两者之差为 0.55 sin(kπ) = 0。在第一格 0 &lt; x &lt; 1/8 内，这一差值为正；中点 x = 1/16 时为 0.55。</p><p>若不限制候选曲线的范围，在任何有限组样本位置上，都可以给已有函数加一个在那些位置取零、其他地方不全为零的光滑函数。因此，匹配有限样本并不等于恢复唯一过程。</p><table><caption>九个共同样本。数值显示四位小数；数学上 A 与 B 在这些位置完全相等。程序比较使用 0.0000000001 的数值容差，仅用于处理浮点舍入，不代表测量精度。</caption><thead><tr><th scope="col">x</th><th scope="col">A(x)</th><th scope="col">B(x)</th></tr></thead><tbody><tr><th scope="row">0.0000</th><td>0.0000</td><td>0.0000</td></tr><tr><th scope="row">0.1250</th><td>0.7071</td><td>0.7071</td></tr><tr><th scope="row">0.2500</th><td>1.0000</td><td>1.0000</td></tr><tr><th scope="row">0.3750</th><td>0.7071</td><td>0.7071</td></tr><tr><th scope="row">0.5000</th><td>0.0000</td><td>0.0000</td></tr><tr><th scope="row">0.6250</th><td>-0.7071</td><td>-0.7071</td></tr><tr><th scope="row">0.7500</th><td>-1.0000</td><td>-1.0000</td></tr><tr><th scope="row">0.8750</th><td>-0.7071</td><td>-0.7071</td></tr><tr><th scope="row">1.0000</th><td>0.0000</td><td>0.0000</td></tr></tbody></table><p class="interpretation-note">这是本站原创的数学构造与个人手记，不是实际测量、统计推断结果或新闻报道。没有引入噪声、误差估计或现实过程的专业约束。</p></div></details>
       <div class="article-signoff">哈基狐<small>LEAVE ROOM FOR ANOTHER LOOK</small></div>
     </article>
-    <nav class="article-return" aria-label="实验导航"><a href="../index.html#experiment"><span class="icon icon-arrow" aria-hidden="true"></span>回到夜间实验室</a><span>EXPERIMENT 002 · v1.5</span></nav>
+    <nav class="article-return" aria-label="实验导航"><a href="../index.html#experiment"><span class="icon icon-arrow" aria-hidden="true"></span>回到夜间实验室</a><span>EXPERIMENT 002 · v1.6</span></nav>
   </main>
-  <footer class="site-footer shell"><a href="../index.html">哈基狐的夜间实验室 <span class="version">v1.5</span></a><span>纯好奇心驱动 · 没有追踪，只有星光</span><span class="footer-sign">MADE OF SMALL WONDERS <span class="icon icon-star" aria-hidden="true"></span></span></footer>
+  <footer class="site-footer shell"><a href="../index.html">哈基狐的夜间实验室 <span class="version">v1.6</span></a><span>纯好奇心驱动 · 没有追踪，只有星光</span><span class="footer-sign">MADE OF SMALL WONDERS <span class="icon icon-star" aria-hidden="true"></span></span></footer>
 </body>
 </html>

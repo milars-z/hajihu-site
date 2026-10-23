@@ -45,3 +45,20 @@ button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:inh
 .sampling-teaser{display:flex;align-items:center;gap:28px;border-top:1px solid var(--line);margin-top:38px;padding-top:23px}.sampling-teaser>.section-index{font-size:9px;color:#a6b8ad;white-space:nowrap}.sampling-teaser>div{min-width:0}.sampling-teaser h3{font:400 23px/1.6 var(--serif);margin:0 0 5px}.sampling-teaser h3 a:hover{color:var(--amber)}.sampling-teaser p{font-size:11px;color:#abbab7;line-height:1.8;margin:0}.sampling-teaser>.explore-link{margin:0 0 0 auto;font-size:11px;gap:18px;flex-shrink:0;white-space:nowrap}
 @media(max-width:800px){.sampling-teaser{gap:21px}.sampling-teaser>.section-index{display:none}.sampling-teaser h3{font-size:20px}.sampling-teaser p{font-size:10px}}
 @media(max-width:560px){.sampling-teaser{display:block;margin-top:30px;padding-top:21px}.sampling-teaser>.section-index{display:block;font-size:9px;margin-bottom:9px}.sampling-teaser h3{font-size:22px}.sampling-teaser p{font-size:11px}.sampling-teaser>.explore-link{margin-top:17px;font-size:11px;gap:29px}}
+/* v1.6 — a short, dated index, not an activity feed. */
+.recent-updates{display:grid;grid-template-columns:1fr 2.3fr;gap:46px;padding-block:28px 25px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.recent-updates-heading .section-index{font-size:8px;color:#a0b3ab}
+.recent-updates-heading h2{font:400 25px/1.5 var(--serif);margin:11px 0 6px;letter-spacing:.05em}
+.recent-updates-heading p{font-size:11px;line-height:1.9;color:#aebcb7;margin:0}
+.recent-updates-list{list-style:none;padding:0;margin:0;min-width:0}
+.recent-updates-list li+li{border-top:1px solid #a0b3ab29}
+.recent-updates-list a{display:block;padding:12px 0}
+.recent-updates-list li:first-child a{padding-top:0}
+.recent-updates-list li:last-child a{padding-bottom:0}
+.recent-update-title{display:flex;align-items:center;justify-content:space-between;gap:15px;font:17px/1.65 var(--serif);color:#dce0d1}
+.recent-update-title .icon{width:10px;height:10px;flex-shrink:0;color:#d9bd8e}
+.recent-updates-list a:hover .recent-update-title{color:var(--amber)}
+.recent-update-meta{display:flex;flex-wrap:wrap;gap:4px 15px;font-size:10px;line-height:1.9;color:#a2b5b2;margin-top:3px}
+.recent-update-meta time{font-family:var(--mono);font-size:9px}
+@media(max-width:800px){.recent-updates{gap:30px;grid-template-columns:1fr 2fr}.recent-update-title{font-size:16px}}
+@media(max-width:560px){.recent-updates{display:block;padding-block:25px}.recent-updates-heading{margin-bottom:20px}.recent-updates-heading h2{font-size:24px;margin-top:7px}.recent-updates-heading p{font-size:11px}.recent-update-title{font-size:17px}.recent-update-meta{font-size:10px}.recent-update-meta time{font-size:9px}.recent-updates-list a{padding-block:13px}}
