@@ -1,0 +1,69 @@
+/* A quiet instrument, not a chart dashboard. No animated transitions. */
+.sampling-article{width:min(840px,calc(100% - 48px))}
+.sampling-page .article-title-block{padding-bottom:35px}
+.sampling-page .article-title-block h1{font-size:clamp(35px,4.7vw,56px);line-height:1.4}
+.sampling-lab{border-top:1px solid #8ba1a35e;border-bottom:1px solid #8ba1a35e;padding-block:25px 23px}
+.sampling-topline{display:flex;align-items:baseline;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.sampling-topline h2{font:400 21px/1.6 var(--serif);margin:0;color:#e6dfca}
+.sampling-topline>span{font:10px/1.8 var(--mono);color:#a0b1af}
+.sampling-intro{font-size:12px;line-height:1.95;color:#aebcb9;max-width:670px;margin:14px 0 18px}
+.sampling-figure{margin:0}
+.sampling-figure svg{display:block;width:100%;height:auto;background:#0e1a26;border:1px solid #84979938}
+.sampling-figure [hidden]{display:none}
+.sample-window{fill:#e7b57810}
+.sampling-grid{fill:none;stroke:#77929b26;stroke-width:1}
+.sampling-axis{fill:none;stroke:#9caeb36b;stroke-width:1}
+.sampling-ticks{fill:#b3c1c1;font:17px var(--mono)}
+.sample-join{fill:none;stroke:#9caeb3;stroke-width:1.5;stroke-dasharray:2 5}
+.sampling-curve{fill:none;stroke-width:2.5;stroke-linejoin:round}
+.curve-a{stroke:#e7b578}
+.curve-b{stroke:#b4d4c7;stroke-dasharray:8 5}
+.sample-dots{fill:#e7b578;stroke:#0e1a26;stroke-width:1.5}
+.probe-line{stroke:#f0e9d99c;stroke-width:1;stroke-dasharray:3 4}
+.probe-a{fill:#e7b578;stroke:#f0e9d9;stroke-width:1.5}
+.probe-b{fill:#0e1a26;stroke:#b4d4c7;stroke-width:2}
+#sampling-reading-ring{fill:none;stroke:#f0e9d9;stroke-width:2}
+.sampling-figure figcaption{font-size:11px;line-height:1.85;color:#a6b8b9;margin-top:11px}
+.sampling-legend{display:flex;gap:10px 24px;flex-wrap:wrap;list-style:none;padding:0;margin:17px 0 21px;font-size:11px;color:#c2cbc2}
+.sampling-legend li{display:flex;align-items:center;gap:9px}
+.legend-line{display:inline-block;width:23px;border-top:2px solid #e7b578;flex-shrink:0}
+.legend-b{border-top:2px dashed #b4d4c7}
+.legend-join{border-top:1px dotted #9caeb3}
+.sampling-actions{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.sampling-actions .button,.sampling-measure .button{font-size:12px;min-height:46px}
+.sampling-actions .text-button{font-size:12px;min-height:44px;color:#bdc8c4}
+.sampling-probe-control{margin-top:31px}
+.sampling-probe-control label{display:flex;justify-content:space-between;align-items:baseline;gap:15px;font-size:13px;color:#e1e3d5}
+.sampling-probe-control output{font:13px var(--mono);color:#e7b578;white-space:nowrap}
+.sampling-probe-control input{display:block;width:100%;margin:9px 0 0;min-height:44px;accent-color:#e7b578;cursor:pointer}
+.sampling-probe-control input:focus-visible{outline:2px solid #e7b578;outline-offset:3px}
+.sampling-range-ends{display:flex;justify-content:space-between;gap:20px;font:10px var(--mono);color:#a4b7b9}
+#sampling-range-help{font-size:11px;line-height:1.85;color:#a4b7b9;margin:13px 0 0}
+.sampling-readouts{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:15px;margin:24px 0 27px;border-block:1px solid #94aaa638;padding-block:17px}
+.sampling-readouts>div{min-width:0}
+.sampling-readouts dt{font-size:11px;color:#aebfb9;line-height:1.8}
+.sampling-readouts dd{margin:8px 0 0;font:24px var(--mono);color:#e3e5d4}
+.sampling-readouts>div:last-child dd{color:#e7b578}
+.sampling-measure p{font-size:11px;line-height:1.9;color:#aabcb6;margin:12px 0}
+.sampling-result{font:14px/1.95 var(--serif);color:#dedec9;border-left:2px solid #d0ae758c;padding-left:17px;min-height:55px;margin:20px 0 0}
+.sampling-noscript{font:12px/1.9 var(--sans);color:#e2c7a3}
+.sampling-note{margin-top:39px}
+.sampling-note h2{font-size:28px}
+.sampling-math{border-top:1px solid #95a69b4d;border-bottom:1px solid #95a69b4d;margin:35px 0 0}
+.sampling-math summary{cursor:pointer;padding:20px 0;font:14px/1.8 var(--serif);color:#d0d4be}
+.sampling-math summary:focus-visible{outline:2px solid #e7b578;outline-offset:5px}
+.sampling-math-inner{font-size:12px;line-height:1.95;color:#b7c4bf;padding-bottom:20px}
+.sampling-math-inner p{margin:0 0 17px}
+.sampling-formula{font:15px/2.1 var(--mono);color:#e0c492;padding:15px 19px;border-left:1px solid #b8aa8066;background:#e0c49205;overflow-wrap:anywhere}
+.sampling-math table{border-collapse:collapse;width:100%;font:12px/1.8 var(--mono);color:#ccd5ce}
+.sampling-math caption{text-align:left;font:11px/1.9 var(--sans);color:#aebeb6;padding-bottom:16px}
+.sampling-math th,.sampling-math td{padding:8px 12px;text-align:right;border-bottom:1px solid #95a69b26;font-weight:400}
+.sampling-math th:first-child{text-align:left}
+.sampling-math thead th{color:#e0c492}
+.sampling-math-inner .interpretation-note{font-size:11px;margin:21px 0 0;color:#aebeb6}
+.sampling-page button:disabled,.sampling-page input:disabled{cursor:not-allowed;opacity:.55}
+@media(max-width:560px){.sampling-article{width:calc(100% - 40px)}.sampling-page .article-title-block h1{font-size:35px}.sampling-topline h2{font-size:20px}.sampling-topline>span{font-size:9px}.sampling-intro{font-size:12px}.sampling-figure{margin-inline:-8px}.sampling-figure figcaption{margin-inline:8px;font-size:11px}.sampling-legend{font-size:10px;gap:11px 15px}.sampling-actions{gap:21px}.sampling-probe-control label{font-size:12px}.sampling-probe-control output{font-size:12px}.sampling-readouts{gap:10px}.sampling-readouts dt{font-size:10px}.sampling-readouts dd{font-size:21px}.sampling-measure .button{font-size:11px;gap:14px;padding-inline:17px}.sampling-result{font-size:13px}.sampling-note h2{font-size:25px}.sampling-math summary{font-size:13px}.sampling-formula{font-size:12px;padding-inline:13px}.sampling-math th,.sampling-math td{padding-inline:8px}}
+@media(max-width:360px){.sampling-page .article-title-block h1{font-size:30px}.sampling-readouts dd{font-size:18px}.sampling-readouts dt{font-size:9px}.sampling-measure .button{font-size:10px;padding-inline:13px}.sampling-probe-control label{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.sampling-page{scroll-behavior:auto}}
+
+.sampling-page .button,.sampling-page .text-button{transition:none}

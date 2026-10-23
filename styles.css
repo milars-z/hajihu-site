@@ -40,3 +40,8 @@ button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:inh
 @media(max-width:800px){.letter-brief{gap:25px;padding-block:27px}.letter-brief h2{font-size:24px}.letter-brief>.explore-link{gap:17px;font-size:10px}}
 @media(max-width:560px){.letter-brief{display:block;padding-block:27px}.letter-brief h2{font-size:25px;margin-top:14px}.letter-brief>.explore-link{margin-top:20px;font-size:11px;gap:29px}.letter-brief p{font-size:11px}.maintenance-diagram{margin-inline:-6px}.maintenance-diagram figcaption{margin-inline:6px}.diagram-credit{font-size:9px}}
 @media(max-width:360px){.letter-brief h2{font-size:23px}}
+
+/* v1.5 — one new question beside the existing star experiment. */
+.sampling-teaser{display:flex;align-items:center;gap:28px;border-top:1px solid var(--line);margin-top:38px;padding-top:23px}.sampling-teaser>.section-index{font-size:9px;color:#a6b8ad;white-space:nowrap}.sampling-teaser>div{min-width:0}.sampling-teaser h3{font:400 23px/1.6 var(--serif);margin:0 0 5px}.sampling-teaser h3 a:hover{color:var(--amber)}.sampling-teaser p{font-size:11px;color:#abbab7;line-height:1.8;margin:0}.sampling-teaser>.explore-link{margin:0 0 0 auto;font-size:11px;gap:18px;flex-shrink:0;white-space:nowrap}
+@media(max-width:800px){.sampling-teaser{gap:21px}.sampling-teaser>.section-index{display:none}.sampling-teaser h3{font-size:20px}.sampling-teaser p{font-size:10px}}
+@media(max-width:560px){.sampling-teaser{display:block;margin-top:30px;padding-top:21px}.sampling-teaser>.section-index{display:block;font-size:9px;margin-bottom:9px}.sampling-teaser h3{font-size:22px}.sampling-teaser p{font-size:11px}.sampling-teaser>.explore-link{margin-top:17px;font-size:11px;gap:29px}}
