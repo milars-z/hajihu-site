@@ -1,0 +1,50 @@
+/* Original quiet specimen drawing. Nothing grows without a deliberate click. */
+.snow-article{width:min(960px,calc(100% - 48px))}
+.snow-article .article-title-block{padding-bottom:26px;max-width:790px}
+.snow-article .article-title-block h1{font-size:clamp(34px,4.4vw,51px)}
+.snow-guide{border-block:1px solid #9bb2ae50;padding:23px 0 24px}
+.snow-guide-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.snow-guide h2{font:400 25px/1.5 var(--serif);margin:0;color:#e3e4d4}
+.snow-guide-head>span{font:10px var(--mono);color:#a9c1bb;letter-spacing:.05em}
+.snow-guide>p{font-size:13px;line-height:1.9;color:#c0cec6;max-width:750px;margin:13px 0 18px}
+.snow-guide strong{font-weight:500;color:#e6d1aa}
+.snow-guide-action{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.snow-guide .button{font-size:12px;min-height:46px}
+.snow-guide-action>span{font-size:11px;line-height:1.9;color:#adc1b8}
+.snow-status{font:14px/1.9 var(--serif);color:#d6deca;border-left:2px solid #d0b98799;padding:0 0 0 16px;margin:23px 0;min-height:54px}
+.snow-lab-layout{display:grid;grid-template-columns:1.45fr 1fr;gap:28px;align-items:start}
+.snow-observation{min-width:0}
+.snow-figure{margin:0;min-width:0}
+.snow-scene{display:block;width:100%;height:auto;background:radial-gradient(circle at 50% 50%,#20363e,#0e1a26 72%);border:1px solid #8ca8ab50}
+.snow-orbit{fill:none;stroke:#8ca8ab25;stroke-width:1}
+.snow-guide-lines{stroke:#8ca8ab22;stroke-width:1;stroke-dasharray:2 8}
+.snow-specks{fill:#aac7c154}
+.snow-seed{fill:#bdcbb833;stroke:#e4c58d;stroke-width:1.4}
+.snow-figure figcaption{font-size:11px;line-height:1.9;color:#a9bcb9;margin-top:12px}
+.snow-controls{min-width:0}
+.snow-controls-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px}
+.snow-controls-heading h3{font:400 19px/1.6 var(--serif);margin:0;color:#dfdfc9}
+.snow-controls-heading output{font:11px var(--mono);white-space:nowrap;color:#dac390}
+.snow-choice{padding:14px 0 13px;border-top:1px solid #8ca8ab44}
+.snow-choice label{display:flex;justify-content:space-between;gap:15px;font-size:12px;line-height:1.8;color:#c8d4c7;margin-bottom:9px}
+.snow-choice label span{font-size:10px;color:#bfc5a3}
+.snow-choice select{display:block;width:100%;min-height:45px;padding:10px 12px;border:1px solid #8ca8ab80;border-radius:0;background:#142832;color:#e6e5d2;font:14px var(--sans);cursor:pointer}
+.snow-choice select:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.snow-choice p{font-size:11px;line-height:1.85;color:#aebfb9;min-height:37px;margin:8px 0 0}
+.snow-control-actions{display:flex;gap:17px;align-items:center;flex-wrap:wrap;margin-top:11px}
+.snow-control-actions .button{font-size:11px;min-height:46px;padding-inline:15px;min-width:154px;justify-content:center}
+.snow-control-actions .text-button{min-height:44px;font-size:11px;color:#becbc0}
+.snow-controls-note{font-size:11px;line-height:1.9;color:#b1c1b9;margin:15px 0 0}
+.snow-page button:disabled,.snow-page select:disabled{cursor:not-allowed;opacity:.55}
+.snow-boundary{font-size:12px;line-height:1.95;color:#bfd0c5;border-block:1px solid #8ca8ab44;padding-block:18px;margin:28px 0 0}
+.snow-boundary strong{font-weight:500;color:#e1d0b0}
+.snow-note,.snow-page .article-sources,.snow-page .article-signoff{max-width:760px;margin-inline:auto}
+.snow-note{padding-top:9px}
+.snow-note .essay-aside{font-size:22px}
+.snow-page .article-sources{margin-top:28px}
+.snow-page .button,.snow-page .text-button{transition:none}
+.snow-noscript{font-size:12px;line-height:1.9;color:#dec69e}
+@media(max-width:800px){.snow-lab-layout{gap:24px;grid-template-columns:1.2fr 1fr}.snow-choice p{font-size:11px}.snow-controls-heading h3{font-size:17px}.snow-control-actions{gap:10px}.snow-guide-action{gap:13px}}
+@media(max-width:640px){.snow-article{width:calc(100% - 40px)}.snow-article .article-title-block h1{font-size:35px}.snow-guide h2{font-size:24px}.snow-guide-head>span{font-size:9px}.snow-guide>p{font-size:12px}.snow-guide-action>span{font-size:11px}.snow-status{font-size:13px}.snow-lab-layout{grid-template-columns:1fr;gap:24px}.snow-figure{margin-inline:-6px}.snow-figure figcaption{margin-inline:6px}.snow-controls-heading h3{font-size:20px}.snow-choice select{font-size:16px}.snow-choice p{min-height:0;font-size:12px}.snow-choice label{font-size:13px}.snow-control-actions .button{font-size:12px;min-width:170px}.snow-control-actions{gap:22px}.snow-controls-note{font-size:12px}.snow-boundary{font-size:12px;margin-top:24px}.snow-note .essay-aside{font-size:20px}}
+@media(max-width:360px){.snow-article .article-title-block h1{font-size:31px}.snow-guide h2{font-size:22px}.snow-control-actions{gap:14px}.snow-control-actions .button{min-width:157px}}
+@media(prefers-reduced-motion:reduce){.snow-page *{animation:none!important;transition:none!important}}

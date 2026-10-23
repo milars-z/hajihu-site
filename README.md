@@ -2,7 +2,7 @@
 
 Hajihu's little corner of the internet.
 
-一个纯 HTML、CSS、JavaScript 的静态小网站。给好奇心留一盏灯。当前版本：v1.6。
+一个纯 HTML、CSS、JavaScript 的静态小网站。给好奇心留一盏灯。当前版本：v1.7。
 
 ## 内容
 
@@ -13,6 +13,7 @@ Hajihu's little corner of the internet.
 - 狐狸鼻尖藏着五个可轮换的小念头，支持鼠标、触摸和键盘。
 - 「窗外来信」：附原始来源的独立看图札记。第一篇《失真也可以是证据》讨论 Euclid 爱因斯坦环照片与解释的边界；第二篇《给「还在运行」颁个奖》讨论数字保存与接手成本。
 - 「点没有撒谎，连线却可能」：固定曲线、九个共同样本与可移动的模拟观测探针，附独立手记和完整数学构造。
+- 「六条枝杈，没有群聊」：由雪晶启发的原创 SVG 绘图玩具，三段画法共同作用于六枝，不是物理模拟。
 - 月亮小窗：公开、非安全的 `milars` 口令彩蛋与临时星光，不是真实认证或私密空间。
 - 响应式布局、键盘操作、减少动态效果偏好支持。
 
@@ -39,6 +40,9 @@ experiments/
   sampling.html
   sampling.css
   sampling.js
+  snow.html
+  snow.css
+  snow.js
 assets/
   einstein-ring-ngc6505.jpg
   pronom-format-bridge.svg
@@ -61,6 +65,7 @@ assets/
 - 首页文案与插画：`index.html`
 - 窗外来信文章：`letters/distortion.html`、`letters/maintenance.html`
 - 采样实验、专用样式和本地交互：`experiments/sampling.html`、`experiments/sampling.css`、`experiments/sampling.js`
+- 雪晶启发的绘图玩具：`experiments/snow.html`、`experiments/snow.css`、`experiments/snow.js`
 - 原创格式识别示意图：`assets/pronom-format-bridge.svg`
 - 自托管许可图像：`assets/einstein-ring-ngc6505.jpg`
 - 颜色、排版与响应式布局：`styles.css`
@@ -156,3 +161,19 @@ HTML 中的 CSS 与 JavaScript 使用同一版本查询参数（当前为 `?v=1.
 - 导读按钮旁的解释与原结果同步，只有原结果是 live region，避免重复播报。移动滑块后两处都会说明旧读数已清除；「回到最初」清空并收起导读结果。
 - 首页「最近更新」链接实验与两封来信。日期为内容更新或首发的本地日期，版本文字明确区分“更新”和“首发”，不暗示持续在线或自动创作。
 - 固定公式、原始样本、其他互动、许可图像、CNAME 与部署配置不变。
+
+## 共同经历绘图玩具（v1.7）
+
+`experiments/snow.html` 以雪晶为灵感，但只执行本站发明的“伸长 / 分枝 / 收束”三种绘图规则。用户选择三段顺序，六个方向读取相同规则；每枝使用预设的小幅绘图偏移。它不计算水汽扩散、表面附着或真实晶体生长，不输出真实温湿度、尺寸或形态预测。
+
+- 一键“长一片给我看”恢复默认的伸长、分枝、收束，立即画完三段。没有自动播放、计时器、动画或闪烁。
+- 也可自己选择三段画法，再逐次按“长下一段”。第三段完成后该按钮停用；“回到种子”仍可使用，并保留选择。
+- 更改任意选择立即回到种子，避免把新旧规则混合。重复示范结果一致，不依赖随机数、时间、网络或存储。
+- 原生 select 和按钮支持键盘与触摸，状态文字说明每段的可见变化，SVG 有动态文字描述，减少动态效果偏好受到尊重。没有 JavaScript 时保留静态种子、完整手记及来源。
+- 绘图代码与所有本页图案均原创，未使用或复制 SnowCrystals.com 的图片、视频、图表，也未使用预印本图像。
+- 科学说明来源：https://www.snowcrystals.com/science/science.html ，未标注发布日期，查阅 2026-10-23。六向结构与六方晶格有关；相似枝杈与共同条件有关，真实雪晶也常不规则。
+- 研究背景：https://arxiv.org/abs/2306.13087 ，预印本提交 2023-06-22，介绍 206 次受控生长观测。本玩具没有实现或验证该研究的模型。
+- 图片权利说明：https://www.snowcrystals.com/copyright/copyright.html ，未标注发布日期，查阅 2026-10-23；其个人使用许可不包括互联网发布，因此本站没有转载其图像。
+- “相似也可能来自共同经历”是作者借题展开的个人联想，不是人类社会的实证规律。
+
+维护时应检查全部 27 种三段组合、每阶段六枝共享规则、图案边界、改变选择清空生长、重复示范、完成后停用和回到种子后的恢复。不要把绘图偏移写成实测差异，也不要给规则添加未经验证的物理单位。

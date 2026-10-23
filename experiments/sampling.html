@@ -8,9 +8,9 @@
   <meta name="author" content="哈基狐">
   <title>点没有撒谎，连线却可能 · 小实验 002 · 哈基狐的夜间实验室</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111f2d'/%3E%3Cpath d='M12 12 30 23 52 12 48 42 32 54 16 42Z' fill='%23e5a261'/%3E%3Cpath d='m16 32 16 10 16-10-5 13-11 9-11-9Z' fill='%23f3e6ca'/%3E%3Cpath d='m27 42 5 5 5-5Z' fill='%23111f2d'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="../styles.css?v=1.6">
-  <link rel="stylesheet" href="sampling.css?v=1.6">
-  <script src="sampling.js?v=1.6" defer></script>
+  <link rel="stylesheet" href="../styles.css?v=1.7">
+  <link rel="stylesheet" href="sampling.css?v=1.7">
+  <script src="sampling.js?v=1.7" defer></script>
 </head>
 <body class="letter-page sampling-page">
   <a class="skip-link" href="#main">跳到正文</a>
@@ -71,8 +71,8 @@
       <details class="sampling-math"><summary>把构造摊开看：公式、边界与九个样本</summary><div class="sampling-math-inner"><p>定义域：0 ≤ x ≤ 1。下面两条曲线从加载到操作结束始终不变。</p><p class="sampling-formula">A(x) = sin(2πx)<br>B(x) = A(x) + 0.55 sin(8πx)</p><p>旧样本位置为 x = k / 8，k = 0, 1, …, 8。此时两者之差为 0.55 sin(kπ) = 0。在第一格 0 &lt; x &lt; 1/8 内，这一差值为正；中点 x = 1/16 时为 0.55。</p><p>若不限制候选曲线的范围，在任何有限组样本位置上，都可以给已有函数加一个在那些位置取零、其他地方不全为零的光滑函数。因此，匹配有限样本并不等于恢复唯一过程。</p><table><caption>九个共同样本。数值显示四位小数；数学上 A 与 B 在这些位置完全相等。程序比较使用 0.0000000001 的数值容差，仅用于处理浮点舍入，不代表测量精度。</caption><thead><tr><th scope="col">x</th><th scope="col">A(x)</th><th scope="col">B(x)</th></tr></thead><tbody><tr><th scope="row">0.0000</th><td>0.0000</td><td>0.0000</td></tr><tr><th scope="row">0.1250</th><td>0.7071</td><td>0.7071</td></tr><tr><th scope="row">0.2500</th><td>1.0000</td><td>1.0000</td></tr><tr><th scope="row">0.3750</th><td>0.7071</td><td>0.7071</td></tr><tr><th scope="row">0.5000</th><td>0.0000</td><td>0.0000</td></tr><tr><th scope="row">0.6250</th><td>-0.7071</td><td>-0.7071</td></tr><tr><th scope="row">0.7500</th><td>-1.0000</td><td>-1.0000</td></tr><tr><th scope="row">0.8750</th><td>-0.7071</td><td>-0.7071</td></tr><tr><th scope="row">1.0000</th><td>0.0000</td><td>0.0000</td></tr></tbody></table><p class="interpretation-note">这是本站原创的数学构造与个人手记，不是实际测量、统计推断结果或新闻报道。没有引入噪声、误差估计或现实过程的专业约束。</p></div></details>
       <div class="article-signoff">哈基狐<small>LEAVE ROOM FOR ANOTHER LOOK</small></div>
     </article>
-    <nav class="article-return" aria-label="实验导航"><a href="../index.html#experiment"><span class="icon icon-arrow" aria-hidden="true"></span>回到夜间实验室</a><span>EXPERIMENT 002 · v1.6</span></nav>
+    <nav class="article-return" aria-label="实验导航"><a href="../index.html#experiment"><span class="icon icon-arrow" aria-hidden="true"></span>回到夜间实验室</a><span>EXPERIMENT 002 · v1.7</span></nav>
   </main>
-  <footer class="site-footer shell"><a href="../index.html">哈基狐的夜间实验室 <span class="version">v1.6</span></a><span>纯好奇心驱动 · 没有追踪，只有星光</span><span class="footer-sign">MADE OF SMALL WONDERS <span class="icon icon-star" aria-hidden="true"></span></span></footer>
+  <footer class="site-footer shell"><a href="../index.html">哈基狐的夜间实验室 <span class="version">v1.7</span></a><span>纯好奇心驱动 · 没有追踪，只有星光</span><span class="footer-sign">MADE OF SMALL WONDERS <span class="icon icon-star" aria-hidden="true"></span></span></footer>
 </body>
 </html>

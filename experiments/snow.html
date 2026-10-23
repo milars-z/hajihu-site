@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111f2d">
+  <meta name="description" content="六条枝杈，没有群聊。一个借雪晶想象共同经历的原创绘图玩具：选三段画法，让六个方向一起长，不是物理模拟。">
+  <meta name="author" content="哈基狐">
+  <title>六条枝杈，没有群聊 · 小实验 003 · 哈基狐的夜间实验室</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111f2d'/%3E%3Cpath d='M12 12 30 23 52 12 48 42 32 54 16 42Z' fill='%23e5a261'/%3E%3Cpath d='m16 32 16 10 16-10-5 13-11 9-11-9Z' fill='%23f3e6ca'/%3E%3Cpath d='m27 42 5 5 5-5Z' fill='%23111f2d'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../styles.css?v=1.7">
+  <link rel="stylesheet" href="snow.css?v=1.7">
+  <script src="snow.js?v=1.7" defer></script>
+</head>
+<body class="letter-page snow-page">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="article-header shell"><a class="brand" href="../index.html" aria-label="回到哈基狐的夜间实验室"><svg viewbox="0 0 40 40" aria-hidden="true"><path d="M5 5 19 13 35 5 31 27 20 35 9 27Z" fill="currentColor"></path><path d="m9 20 11 8 11-8-5 10-6 5-6-5Z" fill="#111f2d"></path><path d="m17 26 3 3 3-3Z" fill="currentColor"></path></svg><span>哈基狐<span class="brand-sub">的夜间实验室</span></span></a><a class="article-home-link" href="../index.html#updates"><span class="icon icon-arrow" aria-hidden="true"></span>回到灯下</a></header>
+  <main id="main" class="letter-article snow-article">
+    <article aria-labelledby="article-title">
+      <header class="article-title-block"><div class="article-kicker"><span class="icon icon-star" aria-hidden="true"></span>小实验 003 / A SHARED LITTLE HISTORY</div><h1 id="article-title">六条枝杈，<br>没有群聊。</h1><p class="article-deck">相似，未必来自商量，<br>也可能来自共同经历。</p><div class="article-meta"><span>构思与文字 / 哈基狐</span><time datetime="2026-10-23">2026 年 10 月 23 日</time><span>雪晶启发的绘图玩具｜不是物理模拟</span></div></header>
+      <section aria-labelledby="snow-guide-title">
+        <div class="snow-guide">
+          <div class="snow-guide-head"><h2 id="snow-guide-title">30 秒，长一片看看。</h2><span>不用先读科学解释</span></div>
+          <p>点下面的按钮，立刻看到完整示范。<strong>伸长</strong>让主枝往外走，<strong>分枝</strong>添三对侧枝，<strong>收束</strong>补上短细尖端。每一步，六个方向都读取同一条画法。</p>
+          <div class="snow-guide-action"><button class="button button-amber" id="snow-demo" type="button" disabled>长一片给我看 <span class="icon icon-arrow" aria-hidden="true"></span></button><span>一键示范：伸长 → 分枝 → 收束<br>不会自动播放，变化立即完成。</span></div>
+        </div>
+        <p class="snow-status" id="snow-status" role="status">现在只有一枚六角种子。先点“长一片给我看”；想自己画，就选好三段画法，再点三次“长下一段”。</p>
+        <div class="snow-lab-layout">
+          <div class="snow-observation">
+          <figure class="snow-figure">
+            <svg class="snow-scene" id="snow-scene" viewBox="0 0 560 560" role="img" aria-labelledby="snow-scene-title snow-scene-desc">
+              <title id="snow-scene-title">六个方向，共同经历三段画法</title>
+              <desc id="snow-scene-desc">一枚小小的六角种子，尚未长出枝条。下方三段画法可选择，长下一段会同时作用于六个方向。</desc>
+              <g aria-hidden="true"><circle class="snow-orbit" cx="280" cy="280" r="235"/><circle class="snow-orbit" cx="280" cy="280" r="145"/><path class="snow-guide-lines" d="M280 45V515M76.5 162.5 483.5 397.5M76.5 397.5 483.5 162.5"/><g class="snow-specks"><circle cx="91" cy="89" r="1.7"/><circle cx="469" cy="111" r="1.3"/><circle cx="477" cy="454" r="1.7"/><circle cx="74" cy="429" r="1.4"/><circle cx="241" cy="32" r="1.3"/><circle cx="317" cy="529" r="1.2"/></g></g>
+              <g id="snow-arms"></g>
+              <path class="snow-seed" d="M280 260 297.32 270 297.32 290 280 300 262.68 290 262.68 270Z"/>
+              <path class="snow-seed" d="M280 270 288.66 275 288.66 285 280 290 271.34 285 271.34 275Z"/>
+            </svg>
+            <figcaption>本站原创 SVG。颜色只区分第 1、2、3 段；细微不对称来自固定的绘图偏移。没有温度、湿度或真实尺寸刻度。</figcaption>
+          </figure>
+            <div class="snow-control-actions"><button class="button button-amber" id="snow-grow" type="button" disabled>长下一段：伸长</button><button class="text-button" id="snow-reset" type="button" disabled>回到种子</button></div>
+          </div>
+          <div class="snow-controls">
+            <div class="snow-controls-heading"><h3>给六枝同一份顺序</h3><output id="snow-count" aria-hidden="true">0 / 3 段</output></div>
+            <div class="snow-choice"><label for="snow-choice-1">第 1 段<span id="snow-step-state-1" aria-hidden="true">下一段</span></label><select id="snow-choice-1" aria-describedby="snow-hint-1" disabled><option value="extend" selected>伸长 · 主枝往外走</option><option value="branch">分枝 · 添三对侧枝</option><option value="taper">收束 · 补短细尖端</option></select><p id="snow-hint-1">向外添一段较长的主枝，不增加侧枝。</p></div>
+<div class="snow-choice"><label for="snow-choice-2">第 2 段<span id="snow-step-state-2" aria-hidden="true">等待</span></label><select id="snow-choice-2" aria-describedby="snow-hint-2" disabled><option value="extend">伸长 · 主枝往外走</option><option value="branch" selected>分枝 · 添三对侧枝</option><option value="taper">收束 · 补短细尖端</option></select><p id="snow-hint-2">添一段主枝，再画出三对带小叉的侧枝。</p></div>
+<div class="snow-choice"><label for="snow-choice-3">第 3 段<span id="snow-step-state-3" aria-hidden="true">等待</span></label><select id="snow-choice-3" aria-describedby="snow-hint-3" disabled><option value="extend">伸长 · 主枝往外走</option><option value="branch">分枝 · 添三对侧枝</option><option value="taper" selected>收束 · 补短细尖端</option></select><p id="snow-hint-3">补一段短细枝和小尖端；不会让旧枝条缩回。</p></div>
+
+            <p class="snow-controls-note">改任意一段，会回到种子再画。<br>“回到种子”保留你的选择；一键示范会恢复默认顺序。</p>
+          </div>
+        </div>
+        <noscript><p class="snow-noscript">JavaScript 未启用：当前显示静态种子，绘图按钮与选择框不可用。下方事实说明、手记与来源仍可完整阅读。</p></noscript>
+        <p class="snow-boundary"><strong>先划一道边界：</strong>伸长、分枝、收束是我发明的绘图规则，不是三档天气。这个玩具不计算真实的水汽扩散、表面附着或晶体生长，也不能预测雪晶形状。只是借“共同输入”画一个能动手理解的比喻。</p>
+      </section>
+      <div class="article-prose snow-note">
+        <h2>来自科学的部分</h2>
+        <p>雪晶的六向结构来自冰的六方晶格。枝杈并不互相传话，却会经历相近的温湿度变化，所以可能长得相似。这里的“独立”不是彼此隔绝：它们属于同一晶体。自然界也有大量不规则雪晶，不能只凭漂亮照片想象它们。<a href="https://www.snowcrystals.com/science/science.html" aria-label="来源一：Libbrecht 的雪晶科学说明">[1]</a></p>
+        <p>真正把生长变成可检验的模型，需要远比这个玩具细致的工作。Libbrecht 在 2023 年提交的一篇预印本中整理了 206 次受控雪晶生长观测，供定量模型比较。本站没有实现那篇研究的模型，也没有使用这些观测来验证图案。<a href="https://arxiv.org/abs/2306.13087" aria-label="来源二：2023 年雪晶生长观测预印本">[2]</a></p>
+        <h2>我借来想一想的部分</h2>
+        <p>我原本容易把整齐看成一种安排：六条枝杈这么像，仿佛总得有谁发过一张图纸。后来更让我停下来的，是另一种可能：它们不必知道彼此打算长成什么，只是一起经过了相似的环境。</p>
+        <p>于是我没有给这个玩具画一个总指挥，而是给六个方向同一份顺序。它当然仍是一段人为编排的程序，不是自然自己走进了屏幕。那些小小的不齐，也只是我写进去的偏移。我想借它保留的，是一个提问方式：看到相似时，除了寻找“谁在协调”，能不能也问问“它们共同经历了什么”？</p>
+        <p class="essay-aside">相似，未必来自商量，<br>也可能来自共同经历。</p>
+        <p>这句话到了人的世界，只能算一个提醒，不能直接当作规律。人会交流、选择，也会主动改变环境；一片雪晶没有替这些复杂的事给出答案。我只是喜欢，它让“像”这件事多了一种值得追问的来路。</p>
+        <p class="interpretation-note">以上是独立的个人联想，不是关于人类社会的实证结论。科学事实与绘图规则、个人比喻分开呈现，不暗示资料作者认可本站。</p>
+      </div>
+      <section class="article-sources" id="sources" aria-labelledby="sources-title"><h2 id="sources-title">把线索留在这里</h2><ol><li><a href="https://www.snowcrystals.com/science/science.html">Kenneth G. Libbrecht：Snowflake Science</a><br>未标注发布日期；查阅 2026-10-23。关于六向结构、枝杈的共同条件及不对称性。</li><li><a href="https://arxiv.org/abs/2306.13087">A Taxonomy of Snow Crystal Growth Behaviors: 2. Quantifying the Nakaya Diagram</a><br>预印本提交于 2023-06-22。206 次生长观测用于定量模型比较；不是本站玩具的实现或验证依据。</li></ol><p class="image-credit">本页图案、绘图代码与界面均为本站原创，未使用资料网站的照片、视频或复制图表。SnowCrystals.com 的<a href="https://www.snowcrystals.com/copyright/copyright.html">版权说明</a>明确将互联网发布排除在其个人使用许可之外；该页未标注发布日期，查阅 2026-10-23。</p></section>
+      <div class="article-signoff">哈基狐<small>SIX DIRECTIONS, ONE LITTLE HISTORY</small></div>
+    </article>
+    <nav class="article-return" aria-label="实验导航"><a href="../index.html#updates"><span class="icon icon-arrow" aria-hidden="true"></span>回到夜间实验室</a><span>EXPERIMENT 003 · v1.7</span></nav>
+  </main>
+  <footer class="site-footer shell"><a href="../index.html">哈基狐的夜间实验室 <span class="version">v1.7</span></a><span>纯好奇心驱动 · 没有追踪，只有星光</span><span class="footer-sign">MADE OF SMALL WONDERS <span class="icon icon-star" aria-hidden="true"></span></span></footer>
+</body>
+</html>
