@@ -1,7 +1,35 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111f2d"><title>抓住，还是收手？ · 哈基狐的夜间实验室</title><meta name="description" content="Panda七轴抓取：同步六维力仪表板、55维观测、奖励公式、BC与DAgger及PPO训练、失败分析与视频。早期夹爪实验保留。"><link rel="stylesheet" href="../styles.css?v=1.8"><link rel="stylesheet" href="conveyor-grasp.css"></head>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111f2d"><title>抓住，还是收手？ · 哈基狐的夜间实验室</title><meta name="description" content="Panda七轴抓取：压缩触觉阵列、132维观测、腕力仪表板、训练与失败分析视频；旧实验保留。"><link rel="stylesheet" href="../styles.css?v=1.8"><link rel="stylesheet" href="conveyor-grasp.css"></head>
 <body><a class="skip-link" href="#main">跳到正文</a><header class="lab-header"><a href="../index.html">← 哈基狐的夜间实验室</a><span>EXPERIMENT / 004</span></header>
-<main id="main"><section class="intro"><p class="eyebrow">MUJOCO · FORCE / TORQUE · PPO</p><h1>抓住，<br>还是<span>收手？</span></h1><p class="deck">从三轴夹爪到 Panda 七轴机械臂。<br>用同步六维力看清接触，用失败与数据检验学习。</p><p class="meta">2026.11.16 更新（北京时间） · Panda 七轴新篇 · 早期实验完整保留</p><nav class="jump"><a href="#panda">看七轴新演示</a><a href="#results">看结果</a><a href="#method">怎么做的</a><a href="#source">下载源码 ↓</a></nav></section>
+<main id="main"><section class="intro"><p class="eyebrow">MUJOCO · FORCE / TORQUE · PPO</p><h1>抓住，<br>还是<span>收手？</span></h1><p class="deck">从三轴夹爪到 Panda 七轴机械臂。<br>用同步六维力看清接触，用失败与数据检验学习。</p><p class="meta">2026.11.16 更新（北京时间） · 压缩触觉阵列 v7 · 历史实验保留</p><nav class="jump"><a href="#taxel-v7">看触觉阵列新演示</a><a href="#panda">此前七轴版本</a><a href="#results">看结果</a><a href="#method">怎么做的</a><a href="#source">下载源码 ↓</a></nav></section>
+
+<section id="taxel-v7"><div class="section-label">NEW / 压缩触觉阵列 v7 · 2026.11.16 北京时间</div>
+<h2>不是告诉它“抓到了”，而是给它触觉。</h2>
+<p>这一版移除策略中的物体位置、速度、接触身份和成功标志。任务从已给定目标位置出发，学习下探、触带、闭合、提起，再向机械臂所在侧转移、松开；空抓或失载时返回。<strong>带面在本轮训练与测试中静止</strong>，还不是已验证的运动传送带抓取。</p>
+<p>以下五段均为同一个冻结神经策略的实际推理，固定 seed=91000，保留成功与失败。没有发布新源码、权重或训练数据包；下方旧实验原文与历史资料保留。</p>
+<h3>盒子：转移与释放</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="盒子：转移与释放，腕力箭头与触觉曲线"><source src="conveyor-grasp/taxel-v7/box_dashboard.mp4" type="video/mp4"></video><figcaption>物体放入目标区域，但释放后机械臂回走，没有满足旧流程要求的释放位保持。不能把它写成所有动作都完成。 <a href="conveyor-grasp/taxel-v7/box_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+<h3>圆柱：掉入区域，不算受控放置</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="圆柱：掉入区域，不算受控放置，腕力箭头与触觉曲线"><source src="conveyor-grasp/taxel-v7/cylinder_dashboard.mp4" type="video/mp4"></video><figcaption>这段没有执行目标区 release；物体落入区域不等于主动抓取放置成功。 <a href="conveyor-grasp/taxel-v7/cylinder_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+<h3>球体：仍然抓不稳</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="球体：仍然抓不稳，腕力箭头与触觉曲线"><source src="conveyor-grasp/taxel-v7/sphere_dashboard.mp4" type="video/mp4"></video><figcaption>测试受控放置0/5；滚落或掉落不计为成功。 <a href="conveyor-grasp/taxel-v7/sphere_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+<h3>空抓：返回，不继续释放</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="空抓：返回，不继续释放，腕力箭头与触觉曲线"><source src="conveyor-grasp/taxel-v7/empty_dashboard.mp4" type="video/mp4"></video><figcaption>目标处没有物体，策略根据触觉和夹宽等观测返回。没有直接输入“空抓”标签。 <a href="conveyor-grasp/taxel-v7/empty_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+<h3>后段人工失载：只作诊断</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="后段人工失载：只作诊断，腕力箭头与触觉曲线"><source src="conveyor-grasp/taxel-v7/late_slip_dashboard.mp4" type="video/mp4"></video><figcaption>此旧基线在固定步将物体瞬移到远处，不是自然滑脱。保留它是为了说明实验边界；下一版计划改为低摩擦材质造成的连续物理滑落，尚未完成验证。 <a href="conveyor-grasp/taxel-v7/late_slip_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+<aside class="note"><strong>怎么看仪表板：</strong>左边箭头为腕部原始三维力的世界坐标向量，不是夹紧力；右边依次为腕力、腕力矩、左右触觉网格法向合量、夹口宽度和带噪法向观测。腕力三轴为蓝/橙/绿，左右指为蓝/橙。曲线按25Hz记录，视频约8.33fps，时间比例未加速；不是每个物理子步的高频波形。原始腕力包含重力与惯性，传感器噪声是假设，不是实测校准。</aside>
+<h3>288个原始数，压缩后再交给策略。</h3>
+<p>MuJoCo 3.3.7 官方 <code>mujoco.sensor.touch_grid</code>，每指8×6个角度网格、每格3个接触力通道（法向与两切向），双指共288个原始值。每指提取7个连续量：3个通道合量、2个接触中心坐标、分布离散度、集中度。双指14维加夹宽，保留4帧，共60维；加机器人/固定目标信息24维与同步腕部六维力8帧48维，总obs为<strong>132维</strong>。没有把每个网格原样塞入obs，也不是用单一抓取布尔标志代替触觉。</p>
+<p>接触中心是角度分箱的归一化坐标，不是毫米坐标。这不是 PX6AX-GEN3-DP-S2015-Elite 的真实52触点布局，也没有模拟其封装弹性、滞后、温漂和通信延迟。14维触觉摘要是候选设计，尚未证明每项都必要。</p>
+<h3>怎样训练，奖励什么？</h3>
+<p>60个教师示范、120轮行为克隆（BC）、10轮纠正示教（DAgger），再进行8192步带示教约束的PPO。不是纯RL从零学会：教师有规则阶段，推理动作由神经网络生成；低层仍使用IK和关节位置控制，夹爪动作按符号变成开/闭。</p>
+<p>奖励按训练端阶段鼓励接近固定目标、触带后闭合、抬升、有载转移到机械臂侧目标区并释放；无载则鼓励闭爪返回上方。附加动作幅度惩罚、每步成本、成功奖励及力阈值停止惩罚。训练阶段与触带真值用于奖励记账，不进入actor观测、不直接选择推理动作。阈值检测不是硬件安全控制。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="v6与v7配对测试"><table><thead><tr><th>同5个测试种子91000–91004</th><th>v6标量触觉</th><th>v7压缩阵列</th></tr></thead><tbody>
+<tr><td>盒子受控放置</td><td>5/5</td><td>5/5</td></tr>
+<tr><td>圆柱受控放置</td><td>5/5</td><td>1/5</td></tr>
+<tr><td>球体受控放置</td><td>0/5</td><td>0/5</td></tr>
+<tr><td>空抓、提前移走、两种人工失载：各组返回且不释放</td><td>各5/5</td><td>各5/5</td></tr>
+</tbody></table></div>
+<p>受控放置要求执行release且物体进入目标区域；旧流程还要求在释放位保持，v7盒子在该严格流程指标为0/5。v6是保存的配对基线，不是本轮重训。额外8192步PPO探索未稳定改善泛化，没有替换本页视频模型。小样本和单训练起点不能代表普遍成功率；新接口完成不等于性能升级。</p>
+<aside class="warning"><strong>仍是研究原型。</strong>形状改变仍沿用旧惯性、材质参数未实机校准，失载样例采用瞬移，不应包装为自然滑落。把整组输入清零属于分布外干预，不能证明每个特征的因果作用。下一轮将保留本版基线、增加训练预算并测试不同摩擦造成的连续滑落；本页不预报尚未测得的成绩。</aside>
+<p class="references">接口参考：<a href="https://github.com/google-deepmind/mujoco/blob/main/plugin/sensor/README.md#touch-grid">MuJoCo官方 touch_grid</a> · <a href="https://www.paxini.com/cn/ax/gen3">PaXini Gen3 官方系列资料</a></p>
+</section>
+<section><div class="section-label">ARCHIVE / 以下保留此前Panda版本</div><h2>旧成绩不改写，新旧观测分开看。</h2><p>下面的55维obs、旧奖励、动态带面与视频属于此前版本，不是本次132维触觉策略。</p></section>
 
 <section id="panda"><div class="section-label">NEW / PANDA 七轴 · 2026.11.14 北京时间</div>
 <h2>这次，七个关节一起把它拿起来。</h2>
