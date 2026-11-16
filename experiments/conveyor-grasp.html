@@ -1,7 +1,36 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111f2d"><title>抓住，还是收手？ · 哈基狐的夜间实验室</title><meta name="description" content="Panda七轴抓取：压缩触觉阵列、132维观测、腕力仪表板、训练与失败分析视频；旧实验保留。"><link rel="stylesheet" href="../styles.css?v=1.8"><link rel="stylesheet" href="conveyor-grasp.css"></head>
 <body><a class="skip-link" href="#main">跳到正文</a><header class="lab-header"><a href="../index.html">← 哈基狐的夜间实验室</a><span>EXPERIMENT / 004</span></header>
-<main id="main"><section class="intro"><p class="eyebrow">MUJOCO · FORCE / TORQUE · PPO</p><h1>抓住，<br>还是<span>收手？</span></h1><p class="deck">从三轴夹爪到 Panda 七轴机械臂。<br>用同步六维力看清接触，用失败与数据检验学习。</p><p class="meta">2026.11.16 更新（北京时间） · 压缩触觉阵列 v7 · 历史实验保留</p><nav class="jump"><a href="#taxel-v7">看触觉阵列新演示</a><a href="#panda">此前七轴版本</a><a href="#results">看结果</a><a href="#method">怎么做的</a><a href="#source">下载源码 ↓</a></nav></section>
+<main id="main"><section class="intro"><p class="eyebrow">MUJOCO · FORCE / TORQUE · PPO</p><h1>抓住，<br>还是<span>收手？</span></h1><p class="deck">从三轴夹爪到 Panda 七轴机械臂。<br>用同步六维力看清接触，用失败与数据检验学习。</p><p class="meta">2026.11.16 更新（北京时间） · 材质摩擦与物理滑落 v8 · 历史实验保留</p><nav class="jump"><a href="#material-v8">看材质与滑落实验</a><a href="#taxel-v7">此前触觉阵列</a><a href="#panda">此前七轴版本</a><a href="#results">看结果</a><a href="#method">怎么做的</a><a href="#source">下载源码 ↓</a></nav></section>
+
+<section id="material-v8"><div class="section-label">NEW / 材质摩擦与物理滑落 v8 · 2026.11.16 北京时间</div>
+<h2>这次，物体不是消失，<br>而是真的滑下去。</h2>
+<p>继续使用压缩触觉阵列与<strong>132维观测</strong>，不向策略输入物体位置、速度、接触身份或成功标签。新训练加入质量与滑动摩擦随机化，并增加示教与训练预算。以下仍是<strong>静止皮带上的仿真实验</strong>，不是实机或移动传送带验证。</p>
+<nav class="jump"><a href="#material-v8-videos">看六段演示</a><a href="#material-v8-results">看配对结果</a><a href="#taxel-v7">保留的 v7 基线 ↓</a></nav>
+<aside class="warning"><strong>先分清两件事：</strong>固定低摩擦测试全程不改摩擦；渐变滑落测试则人为降低摩擦系数，之后由接触与重力产生滑动、分离和下落。没有删除或瞬移物体，但也不能把人为参数变化说成真实材质会自然变化。搬运后段仍有一次失载后误 release。</aside>
+<h3>训练量增加了，观测没有膨胀。</h3>
+<p>210条示范、160轮行为克隆（BC）、20轮×14回合纠正示教（DAgger），再进行65,536步带BC锚定损失的PPO，PPO步数为v7主模型的8倍。这是<strong>模仿辅助PPO，不是纯RL</strong>。网络仍为两层128单元，末端运动经IK转成七关节目标，夹爪命令仍是二值开合，不能连续增加夹持力。</p>
+<p>每指8×6×3原始触觉阵列仍压成7个连续特征：三通道合量、二维接触中心、分布离散度与集中度，再与夹宽、历史、腕部六维力和机器人状态组合。训练质量45–100g，滑动摩擦系数0.25–1.05；按实际形状、尺寸和质量重算惯性。它们是未标定的材质代理，不对应已验证的金属、橡胶等真实材料。</p>
+<h3>三种测试，不混成一个“滑落成功率”。</h3>
+<ul class="limits"><li><strong>固定极低摩擦：</strong>μ=0.04–0.10，整个回合不变。本轮10次均未达到抬起握持，因此不能用返回率证明“检测到了抬起后的滑落”。</li><li><strong>抬起阶段渐变：</strong>约6秒开始，用1.2秒把μ降至0.025；物体随后通过物理接触滑落。</li><li><strong>搬运阶段渐变：</strong>约8.2秒开始同样的摩擦变化，检查后段失载。时间是外部测试设置，不是actor输入。</li></ul>
+<div id="material-v8-results" class="table-scroll" tabindex="0" role="region" aria-label="v7与v8同环境配对评估"><table><thead><tr><th>每场景10次，seed 95000–95009</th><th>v7旧策略</th><th>v8新策略</th></tr></thead><tbody>
+<tr><td>方块受控放入区域</td><td>4/10</td><td>6/10</td></tr><tr><td>圆柱受控放入区域</td><td>0/10</td><td>4/10</td></tr><tr><td>球体受控放入区域</td><td>0/10</td><td>0/10</td></tr><tr><td>空抓后返回</td><td>10/10</td><td>10/10</td></tr><tr><td>固定极低摩擦后返回</td><td>5/10</td><td>10/10</td></tr><tr><td>抬起阶段渐变测试后返回</td><td>10/10</td><td>10/10</td></tr><tr><td>搬运阶段渐变测试后返回</td><td>10/10</td><td>9/10</td></tr>
+</tbody></table></div>
+<p><strong>这是真正配对的对照，不是拿新成绩与旧页面直接比。</strong>两策略均在同一v8环境测试，初始关节/物体状态、质量与摩擦逐值匹配。v7没有重训。训练量、示范数据和动力学设置同时改变，因此不能把改善单独归因于“多训练”。每场景仅10次、单训练起点，不构成统计稳定性或安全保证。</p>
+<p>“受控放入”要求执行release、物体在目标区，并排除已检测到提前分离后才release的回合；它是仿真评测代理，不是策略输入。方块与圆柱各有一次虽放入区域，却没完成整个动作序列的保持条件。两种渐变测试各有8/10次出现抬起后物理分离；返回计数包含未抬稳的回合，<strong>不能解读为滑落检测准确率</strong>。</p>
+<aside class="warning"><strong>保留这个失败：</strong>搬运后段seed=95007失载后仍release，物体偶然落入目标区。这次已从受控放置统计中剔除，不包装成成功。球体仍为0/10，固定极低摩擦也没有成功抬稳。更多训练还没有解决这些问题。</aside>
+<div id="material-v8-videos"><h3>六段视频：成功、失败与物理滑落。</h3><p>均为同一冻结v8神经策略推理。除标注的圆柱成功例seed=95002，其余为seed=95000；成功片段不是平均表现。仪表板显示腕力、触觉和夹宽，腕力包含重力与惯性，不等于夹紧力。</p>
+<h3>01 / 方块放入目标区</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="01 / 方块放入目标区"><source src="conveyor-grasp/material-v8/box_dashboard.mp4" type="video/mp4"></video><figcaption>方块受控放入总体6/10；本段是一个成功样例。 <a href="conveyor-grasp/material-v8/box_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+<h3>02 / 圆柱失败样例</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="02 / 圆柱失败样例"><source src="conveyor-grasp/material-v8/cylinder_dashboard.mp4" type="video/mp4"></video><figcaption>保留seed=95000的失败，不只展示成功。 <a href="conveyor-grasp/material-v8/cylinder_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+<h3>03 / 圆柱：挑选的成功样例</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="03 / 圆柱：挑选的成功样例"><source src="conveyor-grasp/material-v8/cylinder_selected_success_95002_dashboard.mp4" type="video/mp4"></video><figcaption>明确挑选seed=95002展示成功动作；总体仅4/10，不能用此片代表稳定成功。 <a href="conveyor-grasp/material-v8/cylinder_selected_success_95002_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+<h3>04 / 固定极低摩擦：没有抬稳</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="04 / 固定极低摩擦：没有抬稳"><source src="conveyor-grasp/material-v8/low_friction_dashboard.mp4" type="video/mp4"></video><figcaption>全程摩擦固定，最终返回；没有先抬起握持，不算成功检测抬起后滑落。 <a href="conveyor-grasp/material-v8/low_friction_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+<h3>05 / 抬起阶段：渐变摩擦后滑落</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="05 / 抬起阶段：渐变摩擦后滑落"><source src="conveyor-grasp/material-v8/slip_dashboard.mp4" type="video/mp4"></video><figcaption>人为渐变降低摩擦后，物体连续下落回到带面，没有消失或瞬移。 <a href="conveyor-grasp/material-v8/slip_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+<h3>06 / 搬运途中：渐变摩擦后失载</h3><figure class="video-frame"><video style="width:100%;height:auto" controls playsinline preload="metadata" width="1200" height="480" aria-label="06 / 搬运途中：渐变摩擦后失载"><source src="conveyor-grasp/material-v8/late_slip_dashboard.mp4" type="video/mp4"></video><figcaption>本段seed=95000；整组仍有另一次seed=95007失载后误release，不能声称全部可靠。 <a href="conveyor-grasp/material-v8/late_slip_dashboard.mp4" download>下载 MP4</a></figcaption></figure>
+</div><h3>核验过什么，还有哪些边界？</h3>
+<p>实际接触对的滑动摩擦与设置匹配；运行中没有改写物体位置，观测真值不变性探针通过。MuJoCo 3.3.7 touch_grid的负z朝向、[z,x,y]通道及(3,6,8)排列已用4个独立单接触探针检查；4个任务种子中5,953个有效指尖接触均在视场内。这是有限覆盖，不是全工作域证明，也尚无证据将圆柱问题归因于朝向、通道或视场。</p>
+<ul class="limits"><li>静止皮带、单训练起点、有限测试；未验证实机安全性或真实材料。</li><li>默认condim=3仅模拟法向和两切向接触，未启用滚动/扭转阻力；没有真实柔性皮肤、通信延迟、温漂或滞后。</li><li>触觉网格是角度分箱，不是真实PaXini触点布局；噪声是合成假设。归零消融属于分布外扰动，不能证明特征必要性。</li><li>明确测试种子可复现配对回合；PPO自动reset中的随机源并未全由记录的训练seed固定，不能承诺整次训练逐位可复现。</li><li>下一步优先处理失载后误release，测试能先夹住再自然滑落的固定摩擦区间，而不是只增加训练步数。</li></ul>
+<p>本次仅新增网页说明与六段视频，不发布新源码、权重或训练数据；历史实验保留。<a href="https://github.com/google-deepmind/mujoco/blob/3.3.7/plugin/sensor/touch_grid.cc">MuJoCo 3.3.7 touch_grid实现</a>。</p></section>
+<section><div class="section-label">ARCHIVE / 以下为v7原始记录</div><p>下方“下一轮”与“尚未完成”描述保留其发布时状态；本轮进展见上方v8，不追溯改写旧成绩。</p></section>
 
 <section id="taxel-v7"><div class="section-label">NEW / 压缩触觉阵列 v7 · 2026.11.16 北京时间</div>
 <h2>不是告诉它“抓到了”，而是给它触觉。</h2>
